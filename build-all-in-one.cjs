@@ -46,19 +46,19 @@ for (const [file, key] of overviewList) {
 }
 
 // 2e. 南风知意雪碧图（kaai 风格：只切前 4 行=60 款人物，跳过第 5 行动物；运行时按 4×15 切格预裁）
-const KAAI_SHEET_PATH = path.join(DIR, 'my-characters', 'my-characters-01.png');
+const KAAI_SHEET_PATH = path.join(DIR, 'assets', 'my-characters', 'my-characters-01.png');
 if (!fs.existsSync(KAAI_SHEET_PATH)) throw new Error('missing kaai sheet: ' + KAAI_SHEET_PATH);
 // 2f. 谎语之夜雪碧图（wolfkill 风格：2×10=20 款狼人杀人物，跳过宠物行）
-const WOLFKILL_SHEET_PATH = path.join(DIR, 'my-characters', 'wolf-kill-sheet.png');
+const WOLFKILL_SHEET_PATH = path.join(DIR, 'assets', 'my-characters', 'wolf-kill-sheet.png');
 if (!fs.existsSync(WOLFKILL_SHEET_PATH)) throw new Error('missing wolfkill sheet: ' + WOLFKILL_SHEET_PATH);
 // 2g. 兽杀奇谭雪碧图（beastkill 风格：2×10=20 款兽人狼杀角色（橙色调），跳过宠物行；webp 体积友好）
-const BEASTKILL_SHEET_PATH = path.join(DIR, 'my-characters', 'beast-kill-sheet-2.webp');
+const BEASTKILL_SHEET_PATH = path.join(DIR, 'assets', 'my-characters', 'beast-kill-sheet-2.webp');
 if (!fs.existsSync(BEASTKILL_SHEET_PATH)) throw new Error('missing beastkill sheet: ' + BEASTKILL_SHEET_PATH);
 // 2h. 风格封面图（控制面板"角色风格"卡片预览；由各风格雪碧图裁角色合成，webp 每张 ~10KB）
 const STYLE_COVER_FILES = {
-  kaai: path.join(DIR, 'styles', 'covers', 'kaai.webp'),
-  wolfkill: path.join(DIR, 'styles', 'covers', 'wolfkill.webp'),
-  beastkill: path.join(DIR, 'styles', 'covers', 'beastkill.webp'),
+  kaai: path.join(DIR, 'assets', 'styles', 'covers', 'kaai.webp'),
+  wolfkill: path.join(DIR, 'assets', 'styles', 'covers', 'wolfkill.webp'),
+  beastkill: path.join(DIR, 'assets', 'styles', 'covers', 'beastkill.webp'),
 };
 for (const k of Object.keys(STYLE_COVER_FILES)) {
   if (!fs.existsSync(STYLE_COVER_FILES[k])) throw new Error('missing style cover: ' + STYLE_COVER_FILES[k]);
@@ -70,7 +70,7 @@ const mwc = fs.readFileSync(path.join(DIR, 'message-wall-core.js'),  'utf8');
 const ji  = fs.readFileSync(path.join(DIR, 'juejin-integration.js'), 'utf8');
 
 // 3d-1. 赛博武士 Ronin 透明动画帧（收集 + 落盘信息）
-const RONIN_FRAMES_DIR = path.join(DIR, 'pets/cyber-ronin/frames-webp');
+const RONIN_FRAMES_DIR = path.join(DIR, 'assets/pets/cyber-ronin/frames-webp');
 const roninAnimList = [
   ['idle',         'idle'],
   ['runningRight', 'running-right'],
@@ -226,7 +226,7 @@ if (crB64.includes("let WOLFKILL_SHEET_SRC = '';")) throw new Error('WOLFKILL_SH
 if (crB64.includes("let BEASTKILL_SHEET_SRC = '';")) throw new Error('BEASTKILL_SHEET_SRC replace FAILED');
 if (/const STYLE_COVER_DATA = \{\r?\n    kaai: ''/.test(crB64)) throw new Error('STYLE_COVER_DATA replace FAILED');
 
-const ICON_URI = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(DIR, 'juejin-danmu-icon.jpg')).toString('base64');
+const ICON_URI = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(DIR, 'assets', 'icons', 'juejin-danmu-icon.jpg')).toString('base64');
 
 const header = `// ==UserScript==
 // @name         掘金弹幕
@@ -342,7 +342,16 @@ fs.writeFileSync(extPath, extContent, 'utf8');
 const extSize = fs.statSync(extPath).size;
 console.log('WROTE', extPath, '->', (extSize/1024/1024).toFixed(2), 'MB /', Math.round(extSize/1024), 'KB');
 
-// 5c. 统计资源体积
+// 5c. 扩展图标（assets/icons/*.png -> chrome-extension/icons/）
+fs.mkdirSync(path.join(EXT_DIR, 'icons'), { recursive: true });
+for (const f of fs.readdirSync(path.join(DIR, 'assets', 'icons'))) {
+  if (/^icon\d+\.png$/.test(f)) {
+    fs.copyFileSync(path.join(DIR, 'assets', 'icons', f), path.join(EXT_DIR, 'icons', f));
+  }
+}
+console.log('WROTE', path.join(EXT_DIR, 'icons'), '(icon16/32/48/128/256.png)');
+
+// 5d. 统计资源体积
 let resBytes = 0, resCount = 0;
 const walk = (d) => {
   fs.readdirSync(d, { withFileTypes: true }).forEach(e => {

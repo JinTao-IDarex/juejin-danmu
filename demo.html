@@ -293,7 +293,7 @@
           <li>右上角面板可调整<b>角色数量、形象比例、透明度</b></li>
           <li>点击 <b>—</b> 最小化面板，<b>✕</b> 关闭消息墙</li>
           <li>拖动<b>面板标题栏</b>可自由移动位置</li>
-          <li>在<b>真实掘金</b>安装油猴脚本：<code>juejin-message-wall.user.js</code></li>
+          <li>在<b>真实掘金</b>安装油猴脚本：<code>juejin-message-wall-all-in-one.user.js</code></li>
           <li>控制台输入 <code>__MSG_WALL__</code> 查看调试对象</li>
         </ol>
       </div>
@@ -307,9 +307,9 @@
   (function () {
     if (typeof window === "undefined") return;
     window.__JMW_STYLE_COVERS__ = {
-      kaai: './styles/covers/kaai.webp',
-      wolfkill: './styles/covers/wolfkill.webp',
-      beastkill: './styles/covers/beastkill.webp',
+      kaai: './assets/styles/covers/kaai.webp',
+      wolfkill: './assets/styles/covers/wolfkill.webp',
+      beastkill: './assets/styles/covers/beastkill.webp',
     };
   })();
 </script>
@@ -320,7 +320,7 @@
   // 南风知意整身雪碧图（kaai 风格 60 款 4×15 人物，跳过动物行；本地 dev 相对路径，构建时内嵌/写扩展资源）
   (function () {
     if (typeof window === "undefined") return;
-    window.__JMW_KAAI_SHEET__ = './my-characters/my-characters-01.png';
+    window.__JMW_KAAI_SHEET__ = './assets/my-characters/my-characters-01.png';
   })();
 </script>
 <!-- KAAI SHEET INJECT END -->
@@ -330,7 +330,7 @@
   // 谎语之夜雪碧图（wolfkill 风格 20 款 2×10 狼人杀人物，跳过宠物行；本地 dev 相对路径）
   (function () {
     if (typeof window === "undefined") return;
-    window.__JMW_WOLFKILL_SHEET__ = './my-characters/wolf-kill-sheet.png';
+    window.__JMW_WOLFKILL_SHEET__ = './assets/my-characters/wolf-kill-sheet.png';
   })();
 </script>
 <!-- WOLFKILL SHEET INJECT END -->
@@ -340,20 +340,20 @@
   // 兽杀奇谭雪碧图（beastkill 风格 20 款 2×10 兽人狼杀角色，橙色调，跳过宠物行；本地 dev 相对路径）
   (function () {
     if (typeof window === "undefined") return;
-    window.__JMW_BEASTKILL_SHEET__ = './my-characters/beast-kill-sheet-2.webp';
+    window.__JMW_BEASTKILL_SHEET__ = './assets/my-characters/beast-kill-sheet-2.webp';
   })();
 </script>
 <!-- BEASTKILL SHEET INJECT END -->
 
 <!-- RONIN ANIM INJECT BEGIN -->
 <script>
-  // 赛博武士 Ronin 透明动画（本地 dev 从相对路径加载逐帧 PNG）
+  // 赛博武士 Ronin 透明动画（本地 dev 从相对路径加载逐帧 WebP）
   (function () {
     if (typeof window === "undefined") return;
     var fr = function (state, n) {
       var a = [];
       for (var i = 0; i < n; i++) {
-        a.push('./pets/cyber-ronin/frames/' + state + '/' + String(i).padStart(2, '0') + '.png');
+        a.push('./assets/pets/cyber-ronin/frames-webp/' + state + '/' + String(i).padStart(2, '0') + '.webp');
       }
       return a;
     };
