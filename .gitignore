@@ -1,0 +1,16 @@
+# 依赖
+node_modules/
+
+# 构建缓存与临时文件
+build-cache/
+tmp/
+
+# IDE / 工具配置
+.trae/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>掘金弹幕 · Logo 方向三 — 负空间叙事（一句话）</title>
+<style>
+  :root{
+    --blue:#1E80FF;
+    --yellow:#FFC526;
+    --ink:#22283A;
+    --sub:#69707F;
+    --line:#E4E7ED;
+    --bg:#F6F7F9;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:56px 32px 96px;}
+  header{margin-bottom:56px;}
+  header h1{font-size:22px;font-weight:600;letter-spacing:.5px;}
+  header p{margin-top:6px;font-size:13px;color:var(--sub);}
+  header .dot{color:var(--blue);}
+  section{margin-top:64px;}
+  .label{
+    font-size:12px;font-weight:600;letter-spacing:2px;
+    color:var(--sub);text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;margin-bottom:28px;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero{padding:56px 0;}
+  .caption{margin-top:14px;font-size:12px;color:var(--sub);text-align:center;}
+
+  /* 真实尺寸墙 */
+  .sizes{display:flex;align-items:flex-end;gap:44px;flex-wrap:wrap;padding:8px 4px;}
+  .sizes figure{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .sizes figcaption{font-size:12px;color:var(--sub);}
+
+  /* 背景适配 */
+  .bgs{display:flex;gap:24px;flex-wrap:wrap;}
+  .bg-item{display:flex;flex-direction:column;gap:12px;align-items:center;}
+  .bg-chip{
+    width:168px;height:168px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);
+  }
+  .bg-white{background:#FFFFFF;}
+  .bg-dark{background:#1B1F27;border-color:#1B1F27;}
+  .bg-blue{background:#1E80FF;border-color:#1E80FF;}
+  .bg-item figcaption{font-size:12px;color:var(--sub);}
+
+  /* 彩蛋放大读图 */
+  .egg{display:flex;gap:40px;align-items:center;flex-wrap:wrap;}
+  .egg svg{flex:none;}
+  .egg-note{flex:1;min-width:260px;font-size:14px;color:var(--ink);}
+  .egg-note em{font-style:normal;color:var(--blue);font-weight:600;}
+
+  /* 诠释文字 */
+  .prose{max-width:640px;}
+  .prose .oneliner{
+    font-size:19px;font-weight:600;line-height:1.7;margin-bottom:22px;
+  }
+  .prose p{font-size:14px;color:var(--sub);margin-bottom:14px;}
+  .prose strong{color:var(--ink);font-weight:600;}
+
+  /* 规格表 */
+  .spec{
+    width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;
+  }
+  .spec td{border-bottom:1px solid var(--line);padding:10px 8px;vertical-align:top;}
+  .spec td:first-child{color:var(--sub);width:140px;}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;border:1px solid rgba(0,0,0,.08);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>掘金弹幕 · Logo 优化 — Direction 3 <span class="dot">/</span> 负空间叙事</h1>
+    <p>一句话 · 4 个几何元素（3 条 + 1 点）· #1E80FF / #FFFFFF / #FFC526 · viewBox 0 0 512 512</p>
+  </header>
+
+  <!-- ============ 1. HERO ============ -->
+  <section>
+    <div class="label">01 · Hero</div>
+    <div class="card hero">
+      <!--
+        几何系统（512 网格）：
+        底板   rect 512×512, r=118（23%）
+        弹幕条 高 72 / 药丸 r36 / 行距 124 / 左缘对齐 x=104
+        三行   y=96 / 220 / 344，长 304 / 218 / 132（长短参差）
+        句号   与弹幕条等高 d=72，词间距 52，排版在末行行尾
+      -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="480" height="480" role="img" aria-label="掘金弹幕图标：三行白色弹幕，末行行尾一个黄色句号">
+        <rect width="512" height="512" rx="118" fill="#1E80FF"/>
+        <rect x="104" y="96"  width="304" height="72" rx="36" fill="#FFFFFF"/>
+        <rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/>
+        <rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/>
+        <circle cx="324" cy="380" r="36" fill="#FFC526"/>
+      </svg>
+    </div>
+    <div class="caption">整幅标志 = 一句被说完的话：三行弹幕是"正在说的话"，黄点是它的句号。</div>
+  </section>
+
+  <!-- ============ 2. 真实尺寸墙 ============ -->
+  <section>
+    <div class="label">02 · 真实尺寸 16 / 24 / 32 / 48 / 128 px</div>
+    <div class="sizes">
+      <figure>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        <figcaption>16</figcaption>
+      </figure>
+      <figure>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        <figcaption>24</figcaption>
+      </figure>
+      <figure>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        <figcaption>32</figcaption>
+      </figure>
+      <figure>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="48" height="48"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        <figcaption>48</figcaption>
+      </figure>
+      <figure>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="128" height="128"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        <figcaption>128</figcaption>
+      </figure>
+    </div>
+    <div class="caption">最细元素 72/512 ≈ 2.25px @16px，行距与词间距均 &gt; 1.5px —— 16px 下"三行字 + 句号"仍可辨认。</div>
+  </section>
+
+  <!-- ============ 3. 背景适配 ============ -->
+  <section>
+    <div class="label">03 · 背景适配 96 px</div>
+    <div class="bgs">
+      <figure class="bg-item">
+        <div class="bg-chip bg-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>白底页面</figcaption>
+      </figure>
+      <figure class="bg-item">
+        <div class="bg-chip bg-dark">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>深色 #1B1F27</figcaption>
+      </figure>
+      <figure class="bg-item">
+        <div class="bg-chip bg-blue">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect width="512" height="512" rx="118" fill="#1E80FF"/><rect x="104" y="96" width="304" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="220" width="218" height="72" rx="36" fill="#FFFFFF"/><rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/><circle cx="324" cy="380" r="36" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>掘金蓝页面（底板融入，白条与句号仍成立）</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 4. 彩蛋放大 ============ -->
+  <section>
+    <div class="label">04 · 彩蛋放大：末行 = 词 + 空格 + 句号</div>
+    <div class="egg">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="80 320 300 120" width="360" height="144" role="img" aria-label="末行放大：白色弹幕条、一个词间距、黄色句号">
+        <rect x="80" y="320" width="300" height="120" rx="16" fill="#1E80FF"/>
+        <rect x="104" y="344" width="132" height="72" rx="36" fill="#FFFFFF"/>
+        <circle cx="324" cy="380" r="36" fill="#FFC526"/>
+      </svg>
+      <div class="egg-note">
+        末行读作一行被排版的文字：<em>词</em>（白色弹幕条）→ <em>空一格</em>（词间距 52）→ <em>句号</em>（黄点）。
+        黄点的直径严格等于行高 72 —— 它不是贴在旁边的装饰点，而是<b>这套"字体系统"里最小的标点</b>。
+        句号即终点：一行话说完了，一条弹幕发出去了。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. 设计诠释 ============ -->
+  <section>
+    <div class="label">05 · 设计诠释与 Form 来源</div>
+    <div class="prose">
+      <p class="oneliner">一句话诠释：整个图标就是一条完整的弹幕——三行白色弹幕条是"正在说的话"，黄色圆点是这句话的句号；话说完，句号落下。</p>
+      <p><strong>藏的彩蛋（点破）：</strong>黄点 = 句号「。」。它被严格排版在末行行尾、与弹幕条空出一个词间距、直径等于行高——原 logo 里那颗"游离的小数点"，现在有了语法身份。它还有两层叠加阅读：其一，它同时是弹幕发送者的头像（品牌 DNA 里黄点的原义），等于在这句话的末尾签上了说话人的名；其二，在弹幕/直播间文化里，单独一个「。」正是观众"潜水冒泡"的真实弹幕——这颗句号也是全场最短的一条弹幕：有人来过，说完了。</p>
+      <p><strong>Form 从产品的哪个特征长出来：</strong>产品的本体是"弹幕墙"——把每条评论排成一行文字叠在页面上飞过。所以标志直接用排版说话：左缘对齐的三行 + 长短参差（304 / 218 / 132），是弹幕墙里三条真实长短不一的评论的自准确的剪影；行距即弹幕的下落节奏；末行最短，因为最新的一条刚说了一半就被句号收尾。轮廓不是"画出来的图形"，而是一段被排版的文字自然形成的负空间形状。</p>
+      <p><strong>Reduction 账目：</strong>底板之外共 4 个元素——3 个药丸矩形 + 1 个圆。每个元素都有名分：三行 = 三条评论（保留长短参差的记忆点），一点 = 句号 / 头像 / 冒泡。没有第五个元素的位置。</p>
+      <table class="spec">
+        <tr><td>画布 / 底板</td><td>viewBox 0 0 512 512 · 圆角方形 r=118（23%，对齐 macOS / Chrome 图标体系）</td></tr>
+        <tr><td>色板</td><td><span class="sw" style="background:#1E80FF"></span>#1E80FF 掘金蓝 · <span class="sw" style="background:#FFFFFF"></span>#FFFFFF 弹幕条 · <span class="sw" style="background:#FFC526"></span>#FFC526 句号黄</td></tr>
+        <tr><td>几何系统</td><td>条高 72 / 药丸 r36 / 行距 124 / 左缘 x=104 / 词间距 52 / 点径 72 = 行高</td></tr>
+        <tr><td>16px 底线</td><td>最小元素 72 → 2.25px（高于 2px 硬线）；最小间隙 52 → 1.63px，分隔清晰可辨</td></tr>
+        <tr><td>禁区自查</td><td>无渐变、无 emoji、无 B 站电视机造型、蓝白黄三色全部保留，长短参差节奏保留</td></tr>
+      </table>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

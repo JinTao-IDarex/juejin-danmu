@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI","Microsoft YaHei",sans-serif; background:#F5F6F8; padding:36px 40px; }
+  h1 { font-size:20px; color:#1F2430; margin-bottom:4px; }
+  .sub { font-size:12.5px; color:#8A93A3; margin-bottom:26px; }
+  .panel { background:#fff; border:1px solid #E7EAF0; border-radius:14px; padding:22px 24px; margin-bottom:18px; }
+  .panel h2 { font-size:13px; color:#5B6472; margin-bottom:16px; font-weight:600; }
+  .sizes { display:flex; align-items:flex-end; gap:36px; }
+  .cell { text-align:center; }
+  .cell img { display:block; image-rendering:auto; }
+  .cell span { display:block; font-size:11px; color:#9AA3B2; margin-top:8px; }
+  .dark { background:#1B1F27; }
+  .dark h2 { color:#A8B1C0; }
+  .toolbar { display:flex; align-items:center; gap:14px; background:#DFE3EA; border-radius:10px; padding:10px 16px; }
+  .toolbar .omni { flex:1; background:#fff; border-radius:999px; padding:7px 14px; font-size:12px; color:#5f6368; }
+  .oldnew { display:flex; gap:48px; align-items:center; }
+  .oldnew figure { text-align:center; }
+  .oldnew figcaption { font-size:11px; color:#9AA3B2; margin-top:8px; }
+  .arrow { font-size:22px; color:#C3CAD6; }
+</style>
+</head>
+<body>
+  <h1>掘金弹幕 · 新图标交付验证（实际产出的 PNG）</h1>
+  <div class="sub">全部取自已替换的 icons/ 目录文件 · 方向三「一句弹幕」</div>
+
+  <div class="panel">
+    <h2>全尺寸真实渲染（16 / 32 / 48 / 128 / 256 px）</h2>
+    <div class="sizes">
+      <div class="cell"><img src="../icons/icon16.png" width="16"><span>16</span></div>
+      <div class="cell"><img src="../icons/icon32.png" width="32"><span>32</span></div>
+      <div class="cell"><img src="../icons/icon48.png" width="48"><span>48</span></div>
+      <div class="cell"><img src="../icons/icon128.png" width="128"><span>128</span></div>
+      <div class="cell"><img src="../icons/icon256.png" width="256"><span>256</span></div>
+    </div>
+  </div>
+
+  <div class="panel dark">
+    <h2>深色环境下 48 / 128 px</h2>
+    <div class="sizes">
+      <div class="cell"><img src="../icons/icon48.png" width="48"><span>48</span></div>
+      <div class="cell"><img src="../icons/icon128.png" width="128"><span>128</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Chrome 工具栏模拟（16px 实际观感）</h2>
+    <div class="toolbar">
+      <img src="../icons/icon16.png" width="16">
+      <img src="../icons/icon16.png" width="16">
+      <div class="omni">https://juejin.cn/post/xxxx</div>
+      <img src="../icons/icon16.png" width="16">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' rx='3' fill='%239AA3B2'/%3E%3C/svg%3E">
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>新旧对比</h2>
+    <div class="oldnew">
+      <figure><img src="backup/juejin-danmu-icon.png" width="128"><figcaption>旧版（全出血直角 / 黄点游离）</figcaption></figure>
+      <div class="arrow">→</div>
+      <figure><img src="../icons/icon128.png" width="128"><figcaption>新版（圆角底板 / 句号黄点）</figcaption></figure>
+    </div>
+  </div>
+</body>
+</html>

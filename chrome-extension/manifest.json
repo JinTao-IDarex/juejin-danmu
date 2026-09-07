@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "掘金弹幕",
+  "version": "2.13.1",
+  "description": "在掘金页面显示透明背景的角色行走弹幕墙（南风知意：60 款人物，仅人物）。图片/动画帧分离为扩展资源文件，体积更小、加载更快。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+    "256": "icons/icon256.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://juejin.cn/*",
+        "*://*.juejin.cn/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "resources/*"
+      ],
+      "matches": [
+        "*://juejin.cn/*",
+        "*://*.juejin.cn/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "type": "page",
+      "title": "掘金消息墙配置面板",
+      "version": 1,
+      "createdAt": 1756800000000,
+      "canvasData": {
+        "x": -96,
+        "y": 0,
+        "group": 0,
+        "nodes": [
+          {
+            "id": "page-index",
+            "type": "page",
+            "name": "掘金消息墙配置面板",
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 800,
+            "src": "pages/index.html"
+          }
+        ],
+        "connections": [],
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-5294efed",
+          "measuredAt": 1788343098140
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "updatedAt": 1756800000000
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "desktop"
+  }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方向一 · 秒数轮盘 — 掘金弹幕 Logo 优化提案</title>
+<style>
+  :root {
+    --ink: #1F2430;
+    --ink-2: #5A6472;
+    --line: #E4E7EC;
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --juejin: #1E80FF;
+    --juejin-deep: #0B4FB8;
+    --sun: #FFC526;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 56px 32px 88px; }
+
+  header.top { margin-bottom: 36px; }
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
+    font-size: 12px; letter-spacing: .14em; color: var(--ink-2);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  h1 { font-size: 26px; font-weight: 700; margin: 0 0 8px; letter-spacing: .01em; }
+  .sub { font-size: 14px; color: var(--ink-2); margin: 0; line-height: 1.7; }
+
+  section { margin-top: 44px; }
+  h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: .1em;
+    color: var(--ink-2); margin: 0 0 14px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  }
+
+  /* Hero */
+  .hero {
+    display: grid; place-items: center;
+    padding: 72px 32px;
+  }
+  .hero svg { display: block; }
+
+  /* Size wall */
+  .sizes {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 44px; padding: 44px 28px 34px; flex-wrap: wrap;
+  }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .cell .slot { display: grid; place-items: end center; }
+  .cell svg { display: block; }
+  .cell .label {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
+    font-size: 11px; color: var(--ink-2);
+  }
+
+  /* Background adaptation */
+  .bgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0; }
+  .bg-tile { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .bg-stage { height: 176px; display: grid; place-items: center; }
+  .bg-stage.white   { background: #FFFFFF; }
+  .bg-stage.dark    { background: #1B1F27; }
+  .bg-stage.juejin  { background: #1E80FF; }
+  .bg-tile figcaption {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
+    font-size: 11px; color: var(--ink-2); text-align: center;
+    padding: 10px 0; background: var(--card); border-top: 1px solid var(--line);
+  }
+  .bg-tile svg { display: block; }
+
+  /* Notes */
+  .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .note {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .note h3 { margin: 0 0 8px; font-size: 14px; font-weight: 700; }
+  .note p { margin: 0; font-size: 13.5px; line-height: 1.85; color: #3A4250; }
+  .note .hl { color: var(--juejin-deep); font-weight: 600; }
+  .note.full { grid-column: 1 / -1; }
+
+  /* Palette */
+  .palette { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 12px 5px 6px; font-family: ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
+    font-size: 11px; color: var(--ink-2); background: var(--paper);
+  }
+  .chip i { width: 18px; height: 18px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,.08); }
+
+  footer { margin-top: 56px; font-size: 12px; color: var(--ink-2); text-align: center; }
+
+  @media (max-width: 720px) {
+    .bgs { grid-template-columns: 1fr; }
+    .notes { grid-template-columns: 1fr; }
+    .hero { padding: 40px 16px; }
+    .hero svg { width: 320px; height: 320px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Direction 1 / Style #7 Cosmic Retro-Futurism · 复古未来太空图录</div>
+    <h1>掘金弹幕 · Logo 优化提案 —— 秒数轮盘</h1>
+    <p class="sub">品牌 DNA 保留：掘金蓝 #1E80FF 圆角底板 · 白色弹幕条（长短参差 ×3）· 黄色圆点 #FFC526（与弹幕条发生关系）· 512 viewBox · 大圆角底板 · 16px 可辨认</p>
+  </header>
+
+  <!-- ============ Hero ============ -->
+  <section>
+    <h2>HERO · 480PX</h2>
+    <div class="card hero">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="480" height="480" role="img" aria-label="掘金弹幕 logo：蓝色圆角底板上一座轨道轮盘，三条白色弹幕条作为掠过轨道的弦，黄色圆点骑在最长的弹幕前端">
+        <!-- 底板：大圆角方形（圆角 ≈ 边长 23%） -->
+        <rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/>
+        <!-- 轨道环：图录式轨道线，深钴蓝"墨线" -->
+        <circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/>
+        <!-- 12 点位刻度索引：轮盘的"零秒"标记 -->
+        <circle cx="242" cy="106" r="10" fill="#0B4FB8"/>
+        <!-- 弹幕条 ×3：长短参差，条端骑在轨道上（190 / 300 / 222） -->
+        <rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/>
+        <rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/>
+        <rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/>
+        <!-- 黄点：骑行在轨道上的"行星"，同时咬合最长弹幕的笔尖 -->
+        <circle cx="388" cy="256" r="40" fill="#FFC526"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 真实尺寸墙 ============ -->
+  <section>
+    <h2>真实尺寸墙 · 16 / 24 / 32 / 48 / 128 PX（width/height 原尺寸渲染）</h2>
+    <div class="card sizes">
+
+      <div class="cell">
+        <div class="slot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <span class="label">16</span>
+      </div>
+
+      <div class="cell">
+        <div class="slot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <span class="label">24</span>
+      </div>
+
+      <div class="cell">
+        <div class="slot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <span class="label">32</span>
+      </div>
+
+      <div class="cell">
+        <div class="slot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="48" height="48"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <span class="label">48</span>
+      </div>
+
+      <div class="cell">
+        <div class="slot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="128" height="128"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <span class="label">128</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 背景适配 ============ -->
+  <section>
+    <h2>背景适配 · 96PX 实例</h2>
+    <div class="bgs">
+
+      <figure class="bg-tile" style="margin:0;">
+        <div class="bg-stage white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>#FFFFFF · 浅色页面</figcaption>
+      </figure>
+
+      <figure class="bg-tile" style="margin:0;">
+        <div class="bg-stage dark">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>#1B1F27 · 深色页面</figcaption>
+      </figure>
+
+      <figure class="bg-tile" style="margin:0;">
+        <div class="bg-stage juejin">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="96" height="96"><rect x="0" y="0" width="512" height="512" rx="118" fill="#1E80FF"/><circle cx="242" cy="256" r="150" fill="none" stroke="#0B4FB8" stroke-width="16"/><circle cx="242" cy="106" r="10" fill="#0B4FB8"/><rect x="138" y="116" width="190" height="64" rx="32" fill="#FFFFFF"/><rect x="100" y="224" width="300" height="64" rx="32" fill="#FFFFFF"/><rect x="124" y="332" width="222" height="64" rx="32" fill="#FFFFFF"/><circle cx="388" cy="256" r="40" fill="#FFC526"/></svg>
+        </div>
+        <figcaption>#1E80FF · 掘金蓝页面（底板隐入，轨道环与弹幕仍成立）</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ============ 设计诠释 ============ -->
+  <section>
+    <h2>设计诠释</h2>
+    <div class="notes">
+
+      <div class="note full">
+        <h3>一句话诠释</h3>
+        <p>把弹幕墙看作一座天文钟：三条长短参差的弹幕是掠过轨道环的弦——最长的第二条横贯整个轮盘直径，像扫过表盘的秒针；黄色圆点是骑行在轨道上的行星，正好咬合这根"秒针"的笔尖——每一条弹幕，都是一次周而复始的时间刻度。</p>
+      </div>
+
+      <div class="note">
+        <h3>Form 来源</h3>
+        <p>轮盘之形长自产品的<span class="hl">时间性</span>：弹幕墙在页面上持续流动，每条弹幕都像秒针一样从右向左扫过屏幕、周而复始。于是圆环轨道成为"屏幕时间"的抽象，三条弹幕条被安排为轨道的三条弦（条端精确骑在轨道线上，保留 190/300/222 的长短参差节奏），黄点作为弹幕发送者的头像，骑行在最长弹幕的前端——它既在轨道上（行星），又在弹幕条尖上（光标），一形两义。</p>
+      </div>
+
+      <div class="note">
+        <h3>风格 #7 DNA 翻译 · 复古未来太空图录</h3>
+        <p>① <span class="hl">SVG 天体轨道线</span> → 深钴蓝轨道环 + 12 点位刻度索引，把"轮盘"立起来；② <span class="hl">行星圆点</span> → 黄点从游离的误置点变成轨道上的行星；③ <span class="hl">图录三色逻辑</span>（深墨 / 奶油 / 钴蓝 + 一抹暖色）→ 深钴蓝墨线环 / 乳白弹幕条 / 掘金蓝底板 / 唯一暖点 #FFC526；④ <span class="hl">天文图录的精确克制</span> → 全标志仅 6 个几何元素，条端与轨道的相切关系全部按圆心距计算。</p>
+        <p style="margin-top:10px; color:#6B7280;">降级说明：原风格的奶油纸纹理、噪点与影片级渐变转场不适用于 16px 栅格，已按规格降级为纯色扁平几何（零渐变、零纹理）；风格底色由纯黑让位给品牌掘金蓝（品牌约束优先）。</p>
+      </div>
+
+      <div class="note full">
+        <h3>调色板</h3>
+        <div class="palette">
+          <span class="chip"><i style="background:#1E80FF"></i>#1E80FF 底板 · 掘金蓝</span>
+          <span class="chip"><i style="background:#0B4FB8"></i>#0B4FB8 轨道墨线 · 蓝系深阶</span>
+          <span class="chip"><i style="background:#FFFFFF"></i>#FFFFFF 弹幕条</span>
+          <span class="chip"><i style="background:#FFC526"></i>#FFC526 行星黄点</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>掘金弹幕 Logo 优化 · 方向一「秒数轮盘」 · 风格 #7 复古未来太空图录 · 自包含单文件，无外部依赖</footer>
+</div>
+</body>
+</html>

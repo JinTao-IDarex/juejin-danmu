@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "run_dir": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin",
+  "spritesheet": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin\\final\\spritesheet.webp",
+  "validation": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin\\final\\validation.json",
+  "contact_sheet": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin\\qa\\contact-sheet.png",
+  "review": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin\\qa\\review.json",
+  "videos": "D:\\2workspace\\codex\\juejin3\\pets\\cyber-ronin\\qa\\videos",
+  "package": "C:\\Users\\apple\\.codex\\pets\\cyber-ronin"
+}

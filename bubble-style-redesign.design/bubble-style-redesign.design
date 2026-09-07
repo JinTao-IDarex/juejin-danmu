@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "type": "page",
+      "title": "角色顶部气泡 · 风格重设计",
+      "version": 1,
+      "createdAt": 1788398400000,
+      "canvasData": {
+        "x": -144,
+        "y": 36,
+        "group": 0,
+        "nodes": [
+          {
+            "id": "page-index",
+            "type": "page",
+            "name": "角色顶部气泡 · 风格重设计",
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 800,
+            "src": "pages/index.html"
+          }
+        ],
+        "connections": [],
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 2315,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-4dde181b",
+          "measuredAt": 1788743763932
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "updatedAt": 1788427000000
+      }
+    },
+    {
+      "id": "image-001",
+      "type": "image",
+      "title": "角色形象（气泡宿主）",
+      "version": 1,
+      "createdAt": 1788398400000,
+      "canvasData": {
+        "x": 1340,
+        "y": 0,
+        "naturalSize": {
+          "width": 1832,
+          "height": 1832
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/character-hero.png"
+      }
+    },
+    {
+      "id": "image-002",
+      "type": "image",
+      "title": "当前气泡样式（重设计前）",
+      "version": 1,
+      "createdAt": 1788398400000,
+      "canvasData": {
+        "x": 1340,
+        "y": 420,
+        "naturalSize": {
+          "width": 390,
+          "height": 92
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/current-bubble.png"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "desktop",
+    "designLibrary": {
+      "name": "TraeWork",
+      "id": "dl_builtin_trae_work",
+      "version": "",
+      "scope": "built-in-global",
+      "path": "c:\\Users\\apple\\.trae-cn\\design_libraries\\dl_builtin_trae_work",
+      "versionSource": "metadata.json"
+    }
+  }
+}

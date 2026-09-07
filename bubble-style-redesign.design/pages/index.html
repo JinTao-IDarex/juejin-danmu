@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <style id="theme-vars">
+/**
+ * TraeWork design library tokens
+ * Light-mode canonical tokens in parser-friendly standard structure.
+ *
+ * Source of truth:
+ * - /Users/bytedance/Desktop/样板间/TraeWork skill.md
+ *
+ * Notes:
+ * - Token values are preserved from the current TraeWork Light system.
+ * - Added numeric tokens use direct values, e.g. --radius-12: 12px.
+ * - Component HTML should reference these canonical token names.
+ */
+
+/* @light-only */
+/* @group-priority: radius, spacers, font, body, heading, code, bg, bg-brand, text, icon, border, accent, status, brand */
+
+:root {
+  /* radius */
+  --radius-0: 0px;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+  --radius-full: 999px;
+  --radius-xs: var(--radius-2);
+  --radius-sm: var(--radius-4);
+  --radius-md: var(--radius-6);
+  --radius-lg: var(--radius-8);
+  --radius-xl: var(--radius-10);
+  --border-width-default: 1px;
+
+  /* spacers */
+  --spacer-0: 0px;
+  --spacer-2: 2px;
+  --spacer-3: 3px;
+  --spacer-4: 4px;
+  --spacer-6: 6px;
+  --spacer-8: 8px;
+  --spacer-10: 10px;
+  --spacer-12: 12px;
+  --spacer-16: 16px;
+  --spacer-20: 20px;
+  --spacer-24: 24px;
+  --spacer-32: 32px;
+  --spacer-40: 40px;
+  --spacer-48: 48px;
+  --spacer-64: 64px;
+
+  /* icon sizes */
+  --icon-size-12: 12px;
+  --icon-size-14: 14px;
+  --icon-size-16: 16px;
+  --icon-size-20: 20px;
+  --icon-size-24: 24px;
+
+  /* font */
+  --font-family-default: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: "SF Pro", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-metric: "Inter", "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-weight-default: 400;
+  --font-weight-code: 450;
+  --font-weight-medium: 500;
+  --font-weight-strong: 600;
+  --font-family-base: var(--font-family-default);
+  --font-family-heading-alias: var(--font-family-heading);
+  --font-family-mono-alias: var(--font-family-mono);
+
+  /* body */
+  --body-xs-font-family: var(--font-family-default);
+  --body-xs-font-size: 10px;
+  --body-xs-font-weight: 400;
+  --body-xs-line-height: 14px;
+  --body-xs-letter-spacing: 0;
+  --body-xs-strong-font-family: var(--font-family-default);
+  --body-xs-strong-font-size: 10px;
+  --body-xs-strong-font-weight: 500;
+  --body-xs-strong-line-height: 14px;
+  --body-xs-strong-letter-spacing: 0;
+  --body-sm-font-family: var(--font-family-default);
+  --body-sm-font-size: 11px;
+  --body-sm-font-weight: 400;
+  --body-sm-line-height: 16px;
+  --body-sm-letter-spacing: 0;
+  --body-sm-strong-font-family: var(--font-family-default);
+  --body-sm-strong-font-size: 11px;
+  --body-sm-strong-font-weight: 500;
+  --body-sm-strong-line-height: 16px;
+  --body-sm-strong-letter-spacing: 0;
+  --body-md-font-family: var(--font-family-default);
+  --body-md-font-size: 12px;
+  --body-md-font-weight: 400;
+  --body-md-line-height: 18px;
+  --body-md-letter-spacing: 0;
+  --body-md-strong-font-family: var(--font-family-default);
+  --body-md-strong-font-size: 12px;
+  --body-md-strong-font-weight: 500;
+  --body-md-strong-line-height: 18px;
+  --body-md-strong-letter-spacing: 0;
+  --body-base-font-family: var(--font-family-default);
+  --body-base-font-size: 14px;
+  --body-base-font-weight: 400;
+  --body-base-line-height: 20px;
+  --body-base-letter-spacing: -0.02em;
+  --body-base-strong-font-family: var(--font-family-default);
+  --body-base-strong-font-size: 14px;
+  --body-base-strong-font-weight: 500;
+  --body-base-strong-line-height: 20px;
+  --body-base-strong-letter-spacing: -0.02em;
+  --body-lg-font-family: var(--font-family-default);
+  --body-lg-font-size: 18px;
+  --body-lg-font-weight: 400;
+  --body-lg-line-height: 28px;
+  --body-lg-letter-spacing: -0.02em;
+
+  /* heading */
+  --heading-3xs-font-family: var(--font-family-default);
+  --heading-3xs-font-size: 11px;
+  --heading-3xs-font-weight: 600;
+  --heading-3xs-line-height: 16px;
+  --heading-3xs-letter-spacing: 0;
+  --heading-2xs-font-family: var(--font-family-default);
+  --heading-2xs-font-size: 12px;
+  --heading-2xs-font-weight: 600;
+  --heading-2xs-line-height: 18px;
+  --heading-2xs-letter-spacing: 0;
+  --heading-xs-font-family: var(--font-family-default);
+  --heading-xs-font-size: 13px;
+  --heading-xs-font-weight: 600;
+  --heading-xs-line-height: 20px;
+  --heading-xs-letter-spacing: 0;
+  --heading-sm-font-family: var(--font-family-default);
+  --heading-sm-font-size: 16px;
+  --heading-sm-font-weight: 600;
+  --heading-sm-line-height: 24px;
+  --heading-sm-letter-spacing: 0;
+  --heading-md-font-family: var(--font-family-heading);
+  --heading-md-font-size: 20px;
+  --heading-md-font-weight: 600;
+  --heading-md-line-height: 28px;
+  --heading-md-letter-spacing: 0;
+  --heading-lg-font-family: var(--font-family-heading);
+  --heading-lg-font-size: 22px;
+  --heading-lg-font-weight: 600;
+  --heading-lg-line-height: 30px;
+  --heading-lg-letter-spacing: 0;
+  --heading-xl-font-family: var(--font-family-heading);
+  --heading-xl-font-size: 24px;
+  --heading-xl-font-weight: 600;
+  --heading-xl-line-height: 32px;
+  --heading-xl-letter-spacing: 0;
+  --heading-2xl-font-family: var(--font-family-heading);
+  --heading-2xl-font-size: 28px;
+  --heading-2xl-font-weight: 600;
+  --heading-2xl-line-height: 36px;
+  --heading-2xl-letter-spacing: 0;
+  --heading-3xl-font-family: var(--font-family-heading);
+  --heading-3xl-font-size: 32px;
+  --heading-3xl-font-weight: 600;
+  --heading-3xl-line-height: 40px;
+  --heading-3xl-letter-spacing: 0;
+  --heading-display-font-family: var(--font-family-heading);
+  --heading-display-font-size: 52px;
+  --heading-display-font-weight: 600;
+  --heading-display-line-height: 60px;
+  --heading-display-letter-spacing: -0.03em;
+  --heading-display-sm-font-family: var(--font-family-heading);
+  --heading-display-sm-font-size: 40px;
+  --heading-display-sm-font-weight: 600;
+  --heading-display-sm-line-height: 48px;
+  --heading-display-sm-letter-spacing: -0.02em;
+
+  /* code */
+  --code-editor-font-family: var(--font-family-mono);
+  --code-editor-font-size: 13px;
+  --code-editor-font-weight: 450;
+  --code-editor-line-height: 20px;
+  --code-terminal-font-family: var(--font-family-mono);
+  --code-terminal-font-size: 12px;
+  --code-terminal-font-weight: 450;
+  --code-terminal-line-height: 18px;
+  --code-text: #17181A;
+  --code-doc: #8393A3;
+  --code-link: #2F74FF;
+  --code-number: #E54595;
+  --code-action: #5F36B2;
+  --code-instruction: #B15EF2;
+  --code-function: #FF5D4D;
+  --code-constant: #175CE6;
+  --code-parameter: #4DA621;
+  --code-attribute: #C99100;
+  --code-tag: #E24864;
+
+  /* bg */
+  --bg-base-default: #FFFFFF;
+  --bg-base-secondary: #F5F5F5;
+  --bg-base-tertiary: #E5E5E5;
+  --bg-overlay-l1: rgba(115, 115, 115, 0.08);
+  --bg-overlay-l2: rgba(115, 115, 115, 0.12);
+  --bg-overlay-l3: rgba(115, 115, 115, 0.16);
+  --bg-overlay-l4: rgba(115, 115, 115, 0.20);
+  --bg-white: #FFFFFF;
+  --bg-menu: #FFFFFF;
+  --bg-tooltip: #FFFFFF;
+  --bg-invert: #262626;
+  --bg-invert-hover: #404040;
+  --bg-invert-active: #171717;
+  --bg-invert-disabled: rgba(115, 115, 115, 0.20);
+  --color-background: var(--bg-base-default);
+  --color-surface: var(--bg-base-secondary);
+  --color-surface-variant: var(--bg-base-tertiary);
+  --color-overlay-1: var(--bg-overlay-l1);
+  --color-overlay-2: var(--bg-overlay-l2);
+  --color-overlay-3: var(--bg-overlay-l3);
+  --color-overlay-4: var(--bg-overlay-l4);
+  --color-card: var(--bg-base-secondary);
+  --color-tooltip: var(--bg-tooltip);
+  --color-menu: var(--bg-menu);
+
+  /* bg-brand */
+  --bg-brand: #4B3FE3;
+  --bg-brand-hover: #6A6FFF;
+  --bg-brand-active: #3F31C6;
+  --bg-brand-disabled: rgba(75, 63, 227, 0.22);
+  --bg-brand-popup: rgba(170, 183, 255, 0.36);
+  --color-primary: var(--bg-brand);
+  --color-primary-hover: var(--bg-brand-hover);
+  --color-primary-disabled: var(--bg-brand-disabled);
+  --color-primary-soft: var(--bg-brand-popup);
+  --color-accent: var(--bg-brand);
+
+  /* text */
+  --text-default: #171717;
+  --text-default-hover: #262626;
+  --text-default-active: #262626;
+  --text-secondary: #404040;
+  --text-secondary-hover: #171717;
+  --text-secondary-active: #171717;
+  --text-tertiary: #737373;
+  --text-disabled: #A1A1A1;
+  --text-onbrand: #FFFFFF;
+  --text-onaccent: #FFFFFF;
+  --text-white: #FFFFFF;
+  --color-foreground: var(--text-default);
+  --color-foreground-hover: var(--text-default-hover);
+  --color-on-surface: var(--text-default);
+  --color-on-surface-variant: var(--text-secondary);
+  --color-muted-foreground: var(--text-secondary);
+  --color-disabled-foreground: var(--text-disabled);
+  --color-on-primary: var(--text-onbrand);
+  --text-brand: #4B3FE3;
+  --text-brand-hover: #6A6FFF;
+
+  /* icon */
+  --icon-default: #262626;
+  --icon-default-hover: #171717;
+  --icon-default-active: #171717;
+  --icon-secondary: #404040;
+  --icon-secondary-hover: #262626;
+  --icon-secondary-active: #262626;
+  --icon-tertiary: #737373;
+  --icon-disabled: #A1A1A1;
+  --icon-onbrand: #FFFFFF;
+  --icon-onaccent: #FFFFFF;
+  --icon-white: #FFFFFF;
+  --icon-brand: #4B3FE3;
+  --icon-brand-hover: #6A6FFF;
+
+  /* border */
+  --border-neutral-l1: rgba(115, 115, 115, 0.12);
+  --border-neutral-l2: rgba(115, 115, 115, 0.18);
+  --border-neutral-l3: rgba(115, 115, 115, 0.36);
+  --border-contrast: #000000;
+  --border-brand: #4B3FE3;
+  --color-border: var(--border-neutral-l1);
+  --color-border-strong: var(--border-neutral-l2);
+  --color-border-stronger: var(--border-neutral-l3);
+  --color-border-contrast: var(--border-contrast);
+  --color-outline: var(--border-neutral-l1);
+
+  /* accent */
+  --accent-teal: #00B983;
+  --accent-coral: #FF6B45;
+  --accent-amber: #F2A90C;
+  --accent-lime: #5FC000;
+  --accent-cyan: #00B6F5;
+  --accent-blue: #3F85FF;
+  --accent-magenta: #F53CFF;
+  --accent-violet: #9570FF;
+  --accent-slate: #747E94;
+
+  /* status */
+  --status-primary-default: #2F74FF;
+  --status-primary-hover: #4C88FF;
+  --status-primary-active: #1759DD;
+  --status-primary-surface-l1: rgba(47, 116, 255, 0.12);
+  --status-primary-surface-l2: rgba(47, 116, 255, 0.18);
+  --status-primary-surface-l3: rgba(47, 116, 255, 0.36);
+  --status-success-default: #15A877;
+  --status-success-hover: #2FB287;
+  --status-success-active: #1E8B56;
+  --status-success-surface-l1: rgba(64, 176, 139, 0.12);
+  --status-success-surface-l2: rgba(64, 176, 139, 0.18);
+  --status-success-surface-l3: rgba(64, 176, 139, 0.36);
+  --status-alert-default: #FEA900;
+  --status-alert-hover: #FFB700;
+  --status-alert-active: #E59100;
+  --status-alert-surface-l1: rgba(254, 169, 0, 0.14);
+  --status-alert-surface-l2: rgba(254, 169, 0, 0.20);
+  --status-alert-surface-l3: rgba(254, 169, 0, 0.36);
+  --status-warning-default: #E27900;
+  --status-warning-hover: #F39A35;
+  --status-warning-active: #C46F11;
+  --status-warning-surface-l1: rgba(226, 121, 0, 0.12);
+  --status-warning-surface-l2: rgba(226, 121, 0, 0.16);
+  --status-warning-surface-l3: rgba(226, 121, 0, 0.36);
+  --status-error-default: #E8463A;
+  --status-error-hover: #EA574C;
+  --status-error-active: #C9382F;
+  --status-error-surface-l1: rgba(232, 70, 58, 0.12);
+  --status-error-surface-l2: rgba(232, 70, 58, 0.16);
+  --status-error-surface-l3: rgba(232, 70, 58, 0.36);
+  --color-info: var(--status-primary-default);
+  --color-success: var(--status-success-default);
+  --color-warning: var(--status-warning-default);
+  --color-error: var(--status-error-default);
+  --color-error-soft: var(--status-error-surface-l1);
+
+  /* brand */
+  --brand-50: #F2F7FF;
+  --brand-100: #E5EAFF;
+  --brand-200: #CFD8FF;
+  --brand-300: #AAB7FF;
+  --brand-400: #8894FF;
+  --brand-500: #6A6FFF;
+  --brand-600: #4B3FE3;
+  --brand-700: #3F31C6;
+  --brand-800: #2C2290;
+  --brand-900: #1A1759;
+  --brand-950: #010109;
+  --brand-grey-50: #FAFAFA;
+  --brand-grey-100: #F5F5F5;
+  --brand-grey-200: #E5E5E5;
+  --brand-grey-300: #D4D4D4;
+  --brand-grey-400: #A1A1A1;
+  --brand-grey-500: #737373;
+  --brand-grey-600: #525252;
+  --brand-grey-700: #404040;
+  --brand-grey-800: #262626;
+  --brand-grey-900: #171717;
+  --brand-grey-950: #0A0A0A;
+  --brand-green-100: var(--brand-50);
+  --brand-green-200: var(--brand-100);
+  --brand-green-300: var(--brand-200);
+  --brand-green-400: var(--brand-300);
+  --brand-green-500: var(--brand-600);
+  --brand-green-600: var(--brand-500);
+  --brand-green-700: var(--brand-700);
+  --brand-green-800: var(--brand-800);
+  --brand-green-900: var(--brand-900);
+  --brand-green-1000: var(--brand-950);
+  --brand-red-100: #FFE5E5;
+  --brand-red-200: #FFCCCC;
+  --brand-red-300: #FFB2B2;
+  --brand-red-400: #FF9999;
+  --brand-red-500: #FF8080;
+  --brand-red-600: #FF6464;
+  --brand-red-700: #E63737;
+  --brand-red-800: #CB1010;
+  --brand-red-900: #8F0505;
+  --brand-red-1000: #4D0000;
+  --brand-yellow-100: #FFF6E5;
+  --brand-yellow-200: #FFECCC;
+  --brand-yellow-300: #FFE3B2;
+  --brand-yellow-400: #FFDA99;
+  --brand-yellow-500: #FFD080;
+  --brand-yellow-600: #FFC864;
+  --brand-yellow-700: #E6A637;
+  --brand-yellow-800: #CB8710;
+  --brand-yellow-900: #8F5C05;
+  --brand-yellow-1000: #4D3000;
+  --brand-blue-100: #E5F3FF;
+  --brand-blue-200: #CCE6FF;
+  --brand-blue-300: #B2DAFF;
+  --brand-blue-400: #99CEFF;
+  --brand-blue-500: #80C1FF;
+  --brand-blue-600: #64B4FF;
+  --brand-blue-700: #3792E6;
+  --brand-blue-800: #1071CB;
+  --brand-blue-900: #054C8F;
+  --brand-blue-1000: #00284D;
+  --brand-purple-100: #E8E5FF;
+  --brand-purple-200: #D2CCFF;
+  --brand-purple-300: #BBB2FF;
+  --brand-purple-400: #A599FF;
+  --brand-purple-500: #8E80FF;
+  --brand-purple-600: #7864FF;
+  --brand-purple-700: #4C37E6;
+  --brand-purple-800: #2610CB;
+  --brand-purple-900: #15058F;
+  --brand-purple-1000: #09004D;
+  --brand-neutral-grey-100: #F2F2F2;
+  --brand-neutral-grey-200: #E3E3E3;
+  --brand-neutral-grey-300: #D6D6D6;
+  --brand-neutral-grey-400: #C7C7C7;
+  --brand-neutral-grey-500: #BABABA;
+  --brand-neutral-grey-600: #ABABAB;
+  --brand-neutral-grey-700: #8A8A8A;
+  --brand-neutral-grey-800: #686868;
+  --brand-neutral-grey-900: #474747;
+  --brand-neutral-grey-1000: #262626;
+  --brand-blue-grey-100: #F1EFF4;
+  --brand-blue-grey-200: #E0E1E6;
+  --brand-blue-grey-300: #CFD3D8;
+  --brand-blue-grey-400: #BFC5CA;
+  --brand-blue-grey-500: #B0B5BA;
+  --brand-blue-grey-600: #A0A6AB;
+  --brand-blue-grey-700: #80898E;
+  --brand-blue-grey-800: #5E696E;
+  --brand-blue-grey-900: #404A4F;
+  --brand-blue-grey-1000: #21262B;
+  --brand-green-grey-100: #F1F4F4;
+  --brand-green-grey-200: #E0E6E6;
+  --brand-green-grey-300: #CFD8D8;
+  --brand-green-grey-400: #BFCACA;
+  --brand-green-grey-500: #B0BABA;
+  --brand-green-grey-600: #A0ABAB;
+  --brand-green-grey-700: #808E8E;
+  --brand-green-grey-800: #5E6E6E;
+  --brand-green-grey-900: #404F4F;
+  --brand-green-grey-1000: #212B2B;
+
+  /* generic fallback */
+  --font-family: var(--font-family-default);
+  --font-size: var(--body-xs-font-size);
+  --font-weight: var(--body-xs-font-weight);
+  --line-height: var(--body-xs-line-height);
+
+  /* viz */
+  --viz-series-brand: var(--bg-brand);
+  --viz-series-brand-soft: var(--brand-300);
+  --viz-series-brand-mid: var(--brand-500);
+  --viz-series-brand-deep: var(--brand-700);
+  --viz-series-neutral: var(--brand-grey-500);
+  --viz-series-coral: #F87454;
+  --viz-series-amber: #EDAA45;
+  --viz-series-mint: #1DC981;
+  --viz-series-teal: #59E8E8;
+  --viz-series-sky: #22A5F7;
+  --viz-series-violet: #B655FC;
+  --viz-series-magenta: #FB9DD7;
+  --viz-series-indigo: #B6A3FF;
+  --viz-series-lime: #A6EA39;
+  --viz-series-slate: #859EAD;
+  --viz-ui-bg-chart: var(--bg-menu);
+  --viz-ui-bg-tooltip: var(--bg-tooltip);
+  --viz-ui-chart-title: var(--text-default);
+  --viz-ui-chart-subtitle: var(--text-secondary);
+  --viz-ui-chart-axis: var(--border-neutral-l2);
+  --viz-ui-chart-tick: var(--text-secondary);
+  --viz-ui-legend-label: var(--text-secondary);
+  --viz-ui-legend-value: var(--text-default);
+
+  /* special */
+  --special-white: #FFFFFF;
+  --special-black: #000000;
+  --special-bgtabsoverlay: rgba(255, 255, 255, 0.12);
+  --special-bggoldoverlay: rgba(210, 181, 19, 0.12);
+
+  /* layout aliases */
+  --brand-1: var(--brand-600);
+  --brand-2: var(--brand-500);
+  --brand-3: var(--brand-300);
+  --brand-4: var(--brand-100);
+  --site-canvas: var(--bg-base-default);
+  --bg-layout-1: var(--bg-base-secondary);
+  --bg-layout-2: var(--bg-overlay-l1);
+  --border-1: var(--border-neutral-l1);
+}
+
+/* Project-local semantic aliases required by head contract (derived from TraeWork tokens) */
+:root {
+  --color-muted: var(--bg-overlay-l1);
+  --color-radius-sm: var(--radius-sm);
+  --color-radius-md: var(--radius-md);
+  --color-radius-lg: var(--radius-lg);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--color-background);
+    --color-foreground: var(--color-foreground);
+    --color-card: var(--color-card);
+    --color-primary: var(--color-primary);
+    --color-muted: var(--color-muted);
+    --color-muted-foreground: var(--color-muted-foreground);
+    --color-accent: var(--color-accent);
+    --color-border: var(--color-border);
+    --radius-sm: var(--color-radius-sm);
+    --radius-md: var(--color-radius-md);
+    --radius-lg: var(--color-radius-lg);
+  }
+  @layer base {
+    body { background: var(--color-background); color: var(--color-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--color-background); }
+      .text-background { color: var(--color-background); }
+      .border-background { border-color: var(--color-background); }
+      .ring-background { --tw-ring-color: var(--color-background); }
+      .bg-foreground { background-color: var(--color-foreground); }
+      .text-foreground { color: var(--color-foreground); }
+      .border-foreground { border-color: var(--color-foreground); }
+      .ring-foreground { --tw-ring-color: var(--color-foreground); }
+      .bg-card { background-color: var(--color-card); }
+      .text-card { color: var(--color-card); }
+      .border-card { border-color: var(--color-card); }
+      .ring-card { --tw-ring-color: var(--color-card); }
+      .bg-primary { background-color: var(--color-primary); }
+      .text-primary { color: var(--color-primary); }
+      .border-primary { border-color: var(--color-primary); }
+      .ring-primary { --tw-ring-color: var(--color-primary); }
+      .bg-muted { background-color: var(--color-muted); }
+      .text-muted { color: var(--color-muted); }
+      .border-muted { border-color: var(--color-muted); }
+      .ring-muted { --tw-ring-color: var(--color-muted); }
+      .bg-muted-foreground { background-color: var(--color-muted-foreground); }
+      .text-muted-foreground { color: var(--color-muted-foreground); }
+      .border-muted-foreground { border-color: var(--color-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--color-muted-foreground); }
+      .bg-accent { background-color: var(--color-accent); }
+      .text-accent { color: var(--color-accent); }
+      .border-accent { border-color: var(--color-accent); }
+      .ring-accent { --tw-ring-color: var(--color-accent); }
+      .bg-border { background-color: var(--color-border); }
+      .text-border { color: var(--color-border); }
+      .border-border { border-color: var(--color-border); }
+      .ring-border { --tw-ring-color: var(--color-border); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    
+    <style>
+      /* ===== Page layout ===== */
+      .page { max-width: 1120px; margin: 0 auto; padding: var(--spacer-48) var(--spacer-32); }
+      .section { margin-top: var(--spacer-48); }
+      .section-title { font-family: var(--heading-sm-font-family); font-size: var(--heading-sm-font-size); font-weight: var(--heading-sm-font-weight); line-height: var(--heading-sm-line-height); color: var(--text-default); margin: 0 0 var(--spacer-16) 0; }
+
+      /* ===== Page header ===== */
+      .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--spacer-24); flex-wrap: wrap; }
+      .page-title { font-family: var(--font-family-heading); font-size: 26px; font-weight: var(--font-weight-strong); line-height: 1.25; color: var(--text-default); margin: 0; }
+      .page-subtitle { margin: var(--spacer-8) 0 0 0; font-size: var(--body-base-font-size); line-height: var(--body-base-line-height); color: var(--text-secondary); }
+      .page-header__tags { display: flex; gap: var(--spacer-8); padding-top: var(--spacer-4); }
+
+      /* ===== Tag (library contract) ===== */
+      .ds-tag { display: inline-flex; align-items: center; gap: var(--spacer-4); height: 22px; padding: 0 var(--spacer-8); border-radius: var(--radius-8); font-size: var(--body-sm-font-size); line-height: var(--body-sm-line-height); background: var(--bg-overlay-l2); color: var(--text-secondary); border: 1px solid var(--border-neutral-l1); }
+      .ds-tag--brand { background: var(--bg-brand-popup); color: var(--text-brand); }
+
+      /* ===== Current card ===== */
+      .current-card { display: flex; gap: var(--spacer-32); align-items: center; background: var(--bg-tooltip); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-12); padding: var(--spacer-24); flex-wrap: wrap; }
+      .current-card__figure { margin: 0; display: flex; flex-direction: column; gap: var(--spacer-8); align-items: center; }
+      .current-card__img { width: 260px; height: auto; display: block; border-radius: var(--radius-8); border: 1px solid var(--border-neutral-l1); }
+      .current-card__caption { font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); }
+      .issue-list { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: var(--spacer-16); }
+      .issue-item { display: flex; gap: var(--spacer-12); align-items: flex-start; }
+      .issue-item__icon { width: var(--icon-size-16); height: var(--icon-size-16); color: var(--icon-tertiary); flex: 0 0 auto; margin-top: var(--spacer-2); }
+      .issue-item__title { font-size: var(--body-base-strong-font-size); font-weight: var(--body-base-strong-font-weight); line-height: var(--body-base-strong-line-height); color: var(--text-default); }
+      .issue-item__desc { margin: var(--spacer-4) 0 0 0; font-size: var(--body-base-font-size); line-height: var(--body-base-line-height); color: var(--text-secondary); }
+
+      /* ===== Stage card ===== */
+      .stage-card { position: relative; background: var(--bg-base-secondary); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-16); padding: var(--spacer-48); }
+      .stage-card__hint { position: absolute; top: var(--spacer-20); right: var(--spacer-24); font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); }
+      .stage-card__scene { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-height: 300px; gap: 0; padding-top: var(--spacer-24); }
+      .stage-card__character { height: 160px; width: auto; display: block; }
+
+      /* ===== Bubble ===== */
+      .bubble {
+        position: relative;
+        max-width: 252px;
+        background: var(--bg-tooltip);
+        border: 1px solid var(--border-neutral-l1);
+        border-radius: var(--radius-12);
+        padding: var(--spacer-12) 14px;
+        box-shadow: 0 6px 20px rgba(23, 23, 23, 0.10);
+        transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      }
+      .bubble:hover { border-color: var(--border-brand); box-shadow: 0 10px 28px rgba(23, 23, 23, 0.12); transform: translateY(-2px); }
+      .bubble--static:hover { border-color: var(--border-neutral-l1); box-shadow: 0 6px 20px rgba(23, 23, 23, 0.10); transform: none; }
+      .bubble--hovered, .bubble--hovered:hover { border-color: var(--border-brand); box-shadow: 0 10px 28px rgba(23, 23, 23, 0.12); transform: translateY(-2px); }
+      .bubble__meta { display: inline-flex; align-items: center; gap: 6px; margin: 0; vertical-align: baseline; margin-right: 6px; }
+      .bubble__meta--block { display: flex; margin-right: 0; margin-bottom: var(--spacer-6); }
+      .bubble__heat { font-size: var(--body-sm-font-size); font-weight: var(--font-weight-semibold); line-height: 1; }
+      .bubble__heat--hot { color: #FF4D4F; }
+      .bubble__heat--new { color: #15A877; }
+      .bubble__source { display: inline-flex; align-items: center; border-radius: var(--radius-full); font-size: 10.5px; font-weight: var(--font-weight-medium); line-height: 1.35; padding: 2px 8px; }
+      .bubble__source--pin { background: #FFEDEF; color: #F5483B; }
+      .bubble__source--article { background: #EAF2FF; color: #1E80FF; }
+      .bubble__source--comment { background: #E5F8F0; color: #15A877; }
+      .bubble__text { display: inline; margin: 0; font-size: var(--body-base-font-size); line-height: var(--body-base-line-height); color: var(--text-default); }
+      .bubble__text--block { display: block; }
+      .bubble__tail {
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 10px;
+        height: 10px;
+        margin-left: -5px;
+        background: var(--bg-tooltip);
+        border-right: 1px solid var(--border-neutral-l1);
+        border-bottom: 1px solid var(--border-neutral-l1);
+        transform: rotate(45deg);
+        transition: border-color 200ms ease;
+        pointer-events: none;
+      }
+      .bubble:hover .bubble__tail { border-color: var(--border-brand); }
+      .bubble--static:hover .bubble__tail { border-color: var(--border-neutral-l1); }
+      .bubble--hovered .bubble__tail, .bubble--hovered:hover .bubble__tail { border-color: var(--border-brand); }
+      .bubble--multiline { max-width: 252px; }
+
+      /* ===== Danmaku pill ===== */
+      .danmaku-pill { display: inline-flex; align-items: center; gap: var(--spacer-8); height: 30px; padding: 0 var(--spacer-12); background: var(--bg-tooltip); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-full); }
+      .danmaku-pill__dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--bg-brand); flex: 0 0 auto; }
+      .danmaku-pill__text { font-size: 13px; line-height: 20px; color: var(--text-default); }
+      .danmaku-pill__source { font-size: var(--body-sm-font-size); line-height: var(--body-sm-line-height); color: var(--text-tertiary); }
+
+      /* ===== Variant grid ===== */
+      .variant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--spacer-16); }
+      .variant-card { background: var(--bg-tooltip); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-12); padding: var(--spacer-16); }
+      .variant-card__stage { display: flex; align-items: center; justify-content: center; background: var(--bg-base-secondary); border-radius: var(--radius-12); padding: var(--spacer-24) var(--spacer-16) calc(var(--spacer-24) + var(--spacer-6)) var(--spacer-16); min-height: 130px; margin-bottom: var(--spacer-12); }
+      .variant-card__name { font-size: var(--heading-2xs-font-size); font-weight: var(--heading-2xs-font-weight); line-height: var(--heading-2xs-line-height); color: var(--text-default); }
+      .variant-card__desc { margin: var(--spacer-4) 0 0 0; font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); }
+
+      /* ===== Icon showcase ===== */
+      .icon-compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacer-16); margin-bottom: var(--spacer-24); }
+      .icon-compare__card { background: var(--bg-tooltip); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-12); padding: var(--spacer-20); text-align: center; }
+      .icon-compare__card--old { border-style: dashed; }
+      .icon-compare__label { font-size: var(--body-sm-font-size); line-height: var(--body-sm-line-height); color: var(--text-tertiary); margin-bottom: var(--spacer-12); }
+      .icon-compare__visual { display: flex; align-items: center; justify-content: center; gap: var(--spacer-8); padding: var(--spacer-16) 0; }
+      .icon-compare__dot { width: 12px; height: 12px; border-radius: var(--radius-full); background: var(--bg-brand); }
+      .icon-compare__icon { width: 20px; height: 20px; color: var(--icon-brand); }
+      .icon-compare__title { font-size: var(--heading-2xs-font-size); font-weight: var(--heading-2xs-font-weight); line-height: var(--heading-2xs-line-height); color: var(--text-default); }
+      .icon-compare__desc { font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); margin-top: var(--spacer-4); }
+
+      .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--spacer-12); }
+      .icon-tile { background: var(--bg-tooltip); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-8); padding: var(--spacer-16) var(--spacer-12); display: flex; flex-direction: column; align-items: center; gap: var(--spacer-8); transition: border-color 150ms ease, transform 150ms ease; }
+      .icon-tile:hover { border-color: var(--border-brand); transform: translateY(-1px); }
+      .icon-tile__icon { width: 24px; height: 24px; color: var(--icon-brand); }
+      .icon-tile__icon--coral { color: #FF6B45; }
+      .icon-tile__icon--teal { color: #00B983; }
+      .icon-tile__icon--amber { color: #F2A90C; }
+      .icon-tile__icon--cyan { color: #00B6F5; }
+      .icon-tile__name { font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-secondary); }
+
+      .icon-in-bubble { background: var(--bg-base-secondary); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-12); padding: var(--spacer-24); margin-top: var(--spacer-16); }
+      .icon-in-bubble__row { display: flex; flex-wrap: wrap; gap: var(--spacer-16); align-items: flex-start; }
+      .icon-bubble-demo {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-start;
+        gap: var(--spacer-8);
+        background: var(--bg-tooltip);
+        border: 1px solid var(--border-neutral-l1);
+        border-radius: var(--radius-12);
+        padding: var(--spacer-10) var(--spacer-12);
+        box-shadow: 0 4px 14px rgba(23, 23, 23, 0.08);
+        max-width: 220px;
+      }
+      .icon-bubble-demo__icon { width: 16px; height: 16px; flex: 0 0 auto; margin-top: 2px; color: var(--icon-brand); }
+      .icon-bubble-demo__icon--coral { color: #FF6B45; }
+      .icon-bubble-demo__icon--teal { color: #00B983; }
+      .icon-bubble-demo__icon--cyan { color: #00B6F5; }
+      .icon-bubble-demo__text { font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-default); margin: 0; }
+      .icon-bubble-demo__tag { display: block; font-size: 10px; line-height: 14px; color: var(--text-tertiary); margin-top: 2px; }
+      .icon-bubble-demo__tail {
+        position: absolute;
+        left: 28px;
+        bottom: -5px;
+        width: 8px;
+        height: 8px;
+        background: var(--bg-tooltip);
+        border-right: 1px solid var(--border-neutral-l1);
+        border-bottom: 1px solid var(--border-neutral-l1);
+        transform: rotate(45deg);
+        pointer-events: none;
+      }
+
+      /* ===== Spec grid ===== */
+      .spec-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacer-16); }
+      .spec-card { background: var(--bg-base-secondary); border: 1px solid var(--border-neutral-l1); border-radius: var(--radius-12); padding: var(--spacer-20); }
+      .spec-card__title { font-size: var(--heading-2xs-font-size); font-weight: var(--heading-2xs-font-weight); line-height: var(--heading-2xs-line-height); color: var(--text-default); margin-bottom: var(--spacer-12); }
+      .spec-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--spacer-12); padding: var(--spacer-6) 0; border-top: 1px solid var(--border-neutral-l1); }
+      .spec-row:first-of-type { border-top: none; }
+      .spec-row__token { font-family: var(--code-editor-font-family); font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-secondary); white-space: nowrap; }
+      .spec-row__value { font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); text-align: right; }
+
+      /* ===== Footer ===== */
+      .page-footer { margin-top: var(--spacer-48); padding-top: var(--spacer-24); border-top: 1px solid var(--border-neutral-l1); }
+      .page-footer__text { margin: 0; font-size: var(--body-md-font-size); line-height: var(--body-md-line-height); color: var(--text-tertiary); }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 960px) {
+        .variant-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .spec-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 640px) {
+        .variant-grid { grid-template-columns: 1fr; }
+        .current-card { flex-direction: column; align-items: flex-start; }
+      }
+
+      /* ===== Reduced motion ===== */
+      @media (prefers-reduced-motion: reduce) {
+        .bubble, .bubble__tail { transition: none; }
+        .bubble:hover { transform: none; }
+        .bubble--hovered, .bubble--hovered:hover { transform: none; }
+      }
+    </style>
+    <script>lucide.createIcons();</script>
+<main data-editor-id="editor-node-mtl3ic4u-1">
+      <div class="page">
+        <!-- 页头区 -->
+        <header class="page-header">
+          <div class="page-header__text">
+            <h1 class="page-title">角色顶部气泡 · 风格重设计</h1>
+            <p class="page-subtitle">为掘金消息墙行走角色头顶的消息气泡设计的新视觉方案。</p>
+          </div>
+          <div class="page-header__tags">
+            <span class="ds-tag ds-tag--brand">TraeWork 约束</span>
+            <span class="ds-tag">浮层组件</span>
+          </div>
+        </header>
+
+        <!-- 现状与问题 -->
+        <section class="section" aria-labelledby="sec-current">
+          <h2 class="section-title" id="sec-current">现状与问题</h2>
+          <div class="current-card">
+            <figure class="current-card__figure">
+              <img src="../assets/current-bubble.png" alt="当前气泡样式截图" class="current-card__img">
+              <figcaption class="current-card__caption">当前样式</figcaption>
+            </figure>
+            <ul class="issue-list">
+              <li class="issue-item">
+                <span class="issue-item__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/dl_builtin_trae_work/Tips.svg');mask-image:url('../assets/icons/dl_builtin_trae_work/Tips.svg');"></span>
+                <div class="issue-item__body">
+                  <div class="issue-item__title">来源归属缺失</div>
+                  <p class="issue-item__desc">来源文字裸露在气泡外下方，孤立无归属。</p>
+                </div>
+              </li>
+              <li class="issue-item">
+                <span class="issue-item__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/dl_builtin_trae_work/edit.svg');mask-image:url('../assets/icons/dl_builtin_trae_work/edit.svg');"></span>
+                <div class="issue-item__body">
+                  <div class="issue-item__title">分类语义弱</div>
+                  <p class="issue-item__desc">圆点语义弱，分类信息不直观。</p>
+                </div>
+              </li>
+              <li class="issue-item">
+                <span class="issue-item__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/dl_builtin_trae_work/Eye.svg');mask-image:url('../assets/icons/dl_builtin_trae_work/Eye.svg');"></span>
+                <div class="issue-item__body">
+                  <div class="issue-item__title">层次与反馈不足</div>
+                  <p class="issue-item__desc">圆角、描边与阴影缺少层次，无悬停反馈。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 新设计主舞台 -->
+        <section class="section" aria-labelledby="sec-stage">
+          <h2 class="section-title" id="sec-stage">新设计</h2>
+          <div class="stage-card" data-dom-id="bubble-stage">
+            <span class="stage-card__hint">悬停气泡查看反馈</span>
+            <div class="stage-card__scene">
+              <div class="bubble">
+                <p class="bubble__text"><span class="bubble__meta">
+                  <span class="bubble__heat bubble__heat--hot">热</span>
+                  <span class="bubble__source bubble__source--pin">沸点</span>
+                </span>有没有人知道掘金等级怎么升级快一点？</p>
+                <span class="bubble__tail" aria-hidden="true"></span>
+              </div>
+              <img src="../assets/character-hero.png" alt="行走角色" class="stage-card__character">
+            </div>
+          </div>
+        </section>
+
+        <!-- 状态与变体 -->
+        <section class="section" aria-labelledby="sec-variants">
+          <h2 class="section-title" id="sec-variants">状态与变体</h2>
+          <div class="variant-grid" data-dom-id="bubble-variants">
+            <div class="variant-card">
+              <div class="variant-card__stage">
+                <div class="bubble bubble--static">
+                  <p class="bubble__text"><span class="bubble__meta">
+                    <span class="bubble__heat bubble__heat--new">新</span>
+                    <span class="bubble__source bubble__source--comment">评论</span>
+                  </span>今天也是写 bug 的一天</p>
+                  <span class="bubble__tail" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="variant-card__name">默认单行</div>
+              <p class="variant-card__desc">短文案一行呈现，meta 行提供分类与来源。</p>
+            </div>
+            <div class="variant-card">
+              <div class="variant-card__stage">
+                <div class="bubble bubble--static bubble--multiline">
+                  <p class="bubble__text bubble__text--block"><span class="bubble__meta">
+                    <span class="bubble__heat bubble__heat--hot">热</span>
+                    <span class="bubble__source bubble__source--article">文章</span>
+                  </span>求推荐适合前端新手的开源项目，最好有 good first issue 可以上手的那种</p>
+                  <span class="bubble__tail" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="variant-card__name">多行展开</div>
+              <p class="variant-card__desc">长文案自然换行，最大宽度约 18 个汉字。</p>
+            </div>
+            <div class="variant-card">
+              <div class="variant-card__stage">
+                <div class="danmaku-pill">
+                  <span class="danmaku-pill__dot" aria-hidden="true"></span>
+                  <span class="danmaku-pill__text">这个活动怎么参加？</span>
+                  <span class="danmaku-pill__source">弹幕</span>
+                </div>
+              </div>
+              <div class="variant-card__name">弹幕药丸</div>
+              <p class="variant-card__desc">胶囊条承载轻量弹幕，品牌紫圆点标识身份。</p>
+            </div>
+            <div class="variant-card">
+              <div class="variant-card__stage">
+                <div class="bubble bubble--static bubble--hovered">
+                  <p class="bubble__text"><span class="bubble__meta">
+                    <span class="bubble__source bubble__source--comment">评论</span>
+                  </span>点我跳转到原评论</p>
+                  <span class="bubble__tail" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="variant-card__name">悬停态</div>
+              <p class="variant-card__desc">品牌描边加深阴影，提示气泡可点击跳转。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 图标优化 -->
+        <section class="section" aria-labelledby="sec-icons">
+          <h2 class="section-title" id="sec-icons">图标优化</h2>
+          <p style="margin: 0 0 var(--spacer-16) 0; font-size: var(--body-base-font-size); line-height: var(--body-base-line-height); color: var(--text-secondary);">
+            将原有语义模糊的紫色圆点替换为气泡风格分类图标，视觉语言统一，分类一目了然。
+          </p>
+
+          <!-- 对比 -->
+          <div class="icon-compare">
+            <div class="icon-compare__card icon-compare__card--old">
+              <div class="icon-compare__label">优化前</div>
+              <div class="icon-compare__visual">
+                <span class="icon-compare__dot" aria-hidden="true"></span>
+              </div>
+              <div class="icon-compare__title">纯色圆点</div>
+              <p class="icon-compare__desc">语义弱，无法区分来源</p>
+            </div>
+            <div class="icon-compare__card">
+              <div class="icon-compare__label">优化后</div>
+              <div class="icon-compare__visual">
+                <span class="icon-compare__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-comment.svg');mask-image:url('../assets/icons/bubble/bubble-comment.svg');"></span>
+                <span class="icon-compare__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-flame.svg');mask-image:url('../assets/icons/bubble/bubble-flame.svg');color:#FF6B45;"></span>
+                <span class="icon-compare__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-article.svg');mask-image:url('../assets/icons/bubble/bubble-article.svg');color:#3F85FF;"></span>
+              </div>
+              <div class="icon-compare__title">分类图标</div>
+              <p class="icon-compare__desc">气泡圆润风格，语义清晰</p>
+            </div>
+          </div>
+
+          <!-- 图标家族 -->
+          <h3 style="font-size: var(--heading-2xs-font-size); font-weight: var(--heading-2xs-font-weight); line-height: var(--heading-2xs-line-height); color: var(--text-default); margin: 0 0 var(--spacer-12) 0;">图标家族</h3>
+          <div class="icon-grid">
+            <div class="icon-tile">
+              <span class="icon-tile__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-comment.svg');mask-image:url('../assets/icons/bubble/bubble-comment.svg');"></span>
+              <span class="icon-tile__name">评论</span>
+            </div>
+            <div class="icon-tile">
+              <span class="icon-tile__icon icon-tile__icon--coral" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-flame.svg');mask-image:url('../assets/icons/bubble/bubble-flame.svg');"></span>
+              <span class="icon-tile__name">沸点</span>
+            </div>
+            <div class="icon-tile">
+              <span class="icon-tile__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-article.svg');mask-image:url('../assets/icons/bubble/bubble-article.svg');color:#3F85FF;"></span>
+              <span class="icon-tile__name">文章</span>
+            </div>
+            <div class="icon-tile">
+              <span class="icon-tile__icon icon-tile__icon--cyan" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-danmaku.svg');mask-image:url('../assets/icons/bubble/bubble-danmaku.svg');"></span>
+              <span class="icon-tile__name">弹幕</span>
+            </div>
+            <div class="icon-tile">
+              <span class="icon-tile__icon icon-tile__icon--amber" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-sparkle.svg');mask-image:url('../assets/icons/bubble/bubble-sparkle.svg');"></span>
+              <span class="icon-tile__name">新消息</span>
+            </div>
+            <div class="icon-tile">
+              <span class="icon-tile__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-dot.svg');mask-image:url('../assets/icons/bubble/bubble-dot.svg');"></span>
+              <span class="icon-tile__name">默认</span>
+            </div>
+          </div>
+
+          <!-- 气泡内效果 -->
+          <div class="icon-in-bubble">
+            <h3 style="font-size: var(--heading-2xs-font-size); font-weight: var(--heading-2xs-font-weight); line-height: var(--heading-2xs-line-height); color: var(--text-default); margin: 0 0 var(--spacer-16) 0;">气泡内效果</h3>
+            <div class="icon-in-bubble__row">
+              <div class="icon-bubble-demo">
+                <span class="icon-bubble-demo__icon icon-bubble-demo__icon--coral" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-flame.svg');mask-image:url('../assets/icons/bubble/bubble-flame.svg');"></span>
+                <div>
+                  <p class="icon-bubble-demo__text">今天也是写 bug 的一天</p>
+                  <span class="icon-bubble-demo__tag">沸点 · 热</span>
+                </div>
+                <span class="icon-bubble-demo__tail" aria-hidden="true"></span>
+              </div>
+              <div class="icon-bubble-demo">
+                <span class="icon-bubble-demo__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-comment.svg');mask-image:url('../assets/icons/bubble/bubble-comment.svg');"></span>
+                <div>
+                  <p class="icon-bubble-demo__text">这个思路太棒了</p>
+                  <span class="icon-bubble-demo__tag">评论</span>
+                </div>
+                <span class="icon-bubble-demo__tail" aria-hidden="true"></span>
+              </div>
+              <div class="icon-bubble-demo">
+                <span class="icon-bubble-demo__icon" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-article.svg');mask-image:url('../assets/icons/bubble/bubble-article.svg');color:#3F85FF;"></span>
+                <div>
+                  <p class="icon-bubble-demo__text">新手入门开源项目推荐</p>
+                  <span class="icon-bubble-demo__tag">文章</span>
+                </div>
+                <span class="icon-bubble-demo__tail" aria-hidden="true"></span>
+              </div>
+              <div class="icon-bubble-demo">
+                <span class="icon-bubble-demo__icon icon-bubble-demo__icon--amber" data-icon aria-hidden="true" style="-webkit-mask-image:url('../assets/icons/bubble/bubble-sparkle.svg');mask-image:url('../assets/icons/bubble/bubble-sparkle.svg');"></span>
+                <div>
+                  <p class="icon-bubble-demo__text">刚刚发布的新功能</p>
+                  <span class="icon-bubble-demo__tag">新消息</span>
+                </div>
+                <span class="icon-bubble-demo__tail" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 设计规范 -->
+        <section class="section" aria-labelledby="sec-spec">
+          <h2 class="section-title" id="sec-spec">设计规范</h2>
+          <div class="spec-grid">
+            <div class="spec-card">
+              <div class="spec-card__title">表面与描边</div>
+              <div class="spec-row">
+                <span class="spec-row__token">--bg-tooltip</span>
+                <span class="spec-row__value">气泡底色</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">--border-neutral-l1</span>
+                <span class="spec-row__value">默认描边</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">--border-brand</span>
+                <span class="spec-row__value">悬停描边</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">0 6px 20px</span>
+                <span class="spec-row__value">阴影 rgba(23,23,23,.10)</span>
+              </div>
+            </div>
+            <div class="spec-card">
+              <div class="spec-card__title">形状与几何</div>
+              <div class="spec-row">
+                <span class="spec-row__token">--radius-12</span>
+                <span class="spec-row__value">气泡圆角</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">--radius-full</span>
+                <span class="spec-row__value">弹幕药丸</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">14×7px</span>
+                <span class="spec-row__value">尾巴视觉尺寸，居中</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">18 字</span>
+                <span class="spec-row__value">气泡最大宽度</span>
+              </div>
+            </div>
+            <div class="spec-card">
+              <div class="spec-card__title">meta 行与热度标记</div>
+              <div class="spec-row">
+                <span class="spec-row__token">热 #FF4D4F</span>
+                <span class="spec-row__value">热榜 / 通知类消息</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">新 #15A877</span>
+                <span class="spec-row__value">入池 30s 内的新消息</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">沸点 #FFEDEF/#F5483B</span>
+                <span class="spec-row__value">红色背景 tag</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">文章 #EAF2FF/#1E80FF</span>
+                <span class="spec-row__value">蓝色背景 tag</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">评论 #E5F8F0/#15A877</span>
+                <span class="spec-row__value">绿色背景 tag</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row__token">--spacer-6</span>
+                <span class="spec-row__value">meta 与正文同行，与首行文字中心对齐</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="page-footer">
+          <p class="page-footer__text">设计约束：TraeWork 设计系统 · 落地目标：message-wall-core.js 气泡绘制逻辑</p>
+        </footer>
+      </div>
+    </main></body>
+</html>
