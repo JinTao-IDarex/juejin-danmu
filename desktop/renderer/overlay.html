@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>掘金弹幕 · 桌面层</title>
+  <style>
+    /* 宿主页必须全透明：透明的是 Electron 窗口本身，Canvas 只画小人和气泡 */
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- 素材路径注入（与 demo.html 同一套 window.__JMW_*__ 约定，指向 jw:// 协议） -->
+  <script>
+    (function () {
+      var A = 'jw://app/assets/';
+      window.__JMW_STYLE_COVERS__ = {
+        kaai: A + 'styles/covers/kaai.webp',
+        wolfkill: A + 'styles/covers/wolfkill.webp',
+        beastkill: A + 'styles/covers/beastkill.webp',
+      };
+      window.__JMW_KAAI_SHEET__ = A + 'my-characters/my-characters-01.png';
+      window.__JMW_WOLFKILL_SHEET__ = A + 'my-characters/wolf-kill-sheet.png';
+      window.__JMW_BEASTKILL_SHEET__ = A + 'my-characters/beast-kill-sheet-2.webp';
+      var fr = function (state, n) {
+        var a = [];
+        for (var i = 0; i < n; i++) {
+          a.push(A + 'pets/cyber-ronin/frames-webp/' + state + '/' + String(i).padStart(2, '0') + '.webp');
+        }
+        return a;
+      };
+      window.__JMW_RONIN_ANIM_FRAMES__ = {
+        idle: fr('idle', 6),
+        runningRight: fr('running-right', 8),
+        runningLeft: fr('running-left', 8),
+        jumping: fr('jumping', 5),
+        waving: fr('waving', 4),
+      };
+    })();
+  </script>
+
+  <!-- 复用浏览器版三个核心模块（构建时拷贝到 desktop/lib） -->
+  <script src="jw://app/lib/character-renderer.js"></script>
+  <script src="jw://app/lib/message-wall-core.js"></script>
+  <script src="jw://app/lib/juejin-integration.js"></script>
+  <script src="./adapter.js"></script>
+</body>
+</html>

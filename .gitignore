@@ -1,6 +1,13 @@
 # 依赖
 node_modules/
 
+# 桌面版（Electron）
+desktop/dist/
+desktop/lib/
+desktop/assets/
+desktop/build/
+!desktop/scripts/
+
 # 构建缓存与临时文件
 build-cache/
 tmp/

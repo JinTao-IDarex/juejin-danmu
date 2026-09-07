@@ -19,12 +19,30 @@
 - 🎛️ **配置面板**：切换风格，调整角色数量、角色大小、深度层数等参数
 - 🖥️ **本地演示**：打开 `demo.html` 即可在浏览器预览，无需安装
 
-## 📦 两种安装形态
+## 📦 三种安装形态
 
 | 形态 | 入口 | 特点 |
 | --- | --- | --- |
+| Windows 桌面程序 | `desktop/` | 无需浏览器，全桌面悬浮小人 + 掘金授权登录 |
 | 油猴脚本 | `juejin-message-wall-all-in-one.user.js` | 单文件即用，图片/动画帧内嵌 base64 |
 | Chrome 扩展（MV3） | `chrome-extension/` | 资源拆分为独立文件，体积更小、加载更快 |
+
+### 桌面程序（Windows）
+
+小人在**整个桌面上行走**播报掘金消息：全屏透明置顶悬浮层，平时不挡鼠标操作，悬停气泡/面板时可交互，点击气泡用系统浏览器打开对应沸点/文章。
+
+```bash
+cd desktop
+npm install          # 国内网络建议设置 Electron 镜像：
+                     # ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/
+npm run dev          # 开发运行
+npm run dist         # 打包 → dist/ 下的 NSIS 安装包 + 便携版 exe
+```
+
+- **掘金授权**：首次启动自动弹出登录窗（可跳过；跳过也能拉公开数据），Cookie 经 DPAPI 加密存储在用户目录，托盘可随时登录/退出
+- **消息源**：主进程直接轮询掘金沸点（最新/最热）、文章（最新/热榜）、热评接口，默认 5 分钟
+- **托盘常驻**：显示/隐藏弹幕墙、立即刷新、开机自启、退出
+- 面板调整的角色数量/大小/风格/消息间隔会持久化，重启生效
 
 ### 安装油猴脚本
 
@@ -61,6 +79,10 @@ node build-all-in-one.cjs
 ├── build-all-in-one.cjs         # 构建脚本：合并源码 + 素材 → 油猴脚本 & Chrome 扩展
 ├── chrome-extension/            # Chrome MV3 扩展（构建产物，可直接加载）
 ├── juejin-message-wall-all-in-one.user.js  # 油猴脚本成品（构建产物）
+├── desktop/                     # Windows 桌面版（Electron：主进程抓取 + 全屏透明悬浮层）
+│   ├── main/                    #   主进程：jw:// 协议、授权、接口轮询、托盘、设置
+│   ├── renderer/                #   悬浮层：复用三大模块的适配层（DesktopProvider）
+│   └── scripts/copy-assets.cjs  #   把三大模块与 assets 拷贝进 desktop（dev/dist 前自动执行）
 ├── demo.html                    # 本地演示页（相对路径加载源码与素材）
 ├── message-wall-config-redesign.html       # 配置面板设计原型
 ├── assets/                      # 构建与演示使用的素材
