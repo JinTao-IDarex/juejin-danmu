@@ -2819,9 +2819,12 @@
       if (danmaku) {
         // 弹幕模式：恒速横穿（px/s × 真实帧间隔 dt），不随机行为、不走路动画
         this.state = 'walking';
-        const dtSec = (PERF.frameDt || 1000 / (PERF.targetFPS || 30)) / 1000;
-        const px = (this._danmakuPx || 120) * dtSec;
-        this.x += (this.direction === 'right' ? 1 : -1) * px;
+        // 鼠标悬停时暂停运动，方便用户阅读/点击
+        if (!this._hovered) {
+          const dtSec = (PERF.frameDt || 1000 / (PERF.targetFPS || 30)) / 1000;
+          const px = (this._danmakuPx || 120) * dtSec;
+          this.x += (this.direction === 'right' ? 1 : -1) * px;
+        }
         if (this.x < -this.width - 60 || this.x > canvasW + 60) this._recycle = true;
         if (this.messageTimer > 0) {
           this.messageTimer--;
@@ -3378,11 +3381,11 @@
     constructor(container, config = {}) {
       this.container = container;
       this.config = Object.assign({
-        characterCount: 15,
+        characterCount: 10,
         characterTypes: ['person', 'cat', 'dog', 'rabbit'],
         characterTypeRatio: { person: 0.55, cat: 0.2, dog: 0.15, rabbit: 0.1 },
         characterScale: 1.3,
-        floorRatio: 1.05,
+        floorRatio: 1.04,
         zIndex: 99999,
         opacity: 1,
         showNames: true,
@@ -4118,8 +4121,8 @@
     pinHot: 'https://api.juejin.cn/recommend_api/v1/short_msg/hot',
     // 文章推荐/最新 feed（sort_type: 200=推荐, 300=最新）
     articleFeed: 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed',
-    // 文章热榜
-    articleHot: 'https://api.juejin.cn/rank_api/v1/scroll_article/list',
+    // 文章热榜（rank_api 已失效，改用 recommend_all_feed sort_type=200 按热度排序）
+    articleHot: 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed',
     // 评论列表（item_type: 2=文章, 4=沸点）
     commentList: 'https://api.juejin.cn/interact_api/v1/comment/list',
   };
@@ -4466,7 +4469,7 @@
     async _fetchArticleHot() {
       const results = [];
       try {
-        // 先用热榜 API 接口
+        // rank_api 已失效，改用 recommend_all_feed sort_type=200 按热度排序
         const resp = await fetch(JUEJIN_APIS.articleHot, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -4475,14 +4478,18 @@
             cursor: '0',
             limit: 20,
             sort_type: 200,
+            id_type: 2,
+            client_type: 2608,
           })
         });
         if (resp.ok) {
           const data = await resp.json();
           const list = data.data || [];
           list.forEach(item => {
-            const info = item.article_info || item;
-            const author = item.author_user_info || {};
+            // recommend_all_feed 的响应结构：item.item_info.article_info
+            const itemInfo = item.item_info || item;
+            const info = itemInfo.article_info || itemInfo.article_info || itemInfo;
+            const author = itemInfo.author_user_info || item.author_user_info || {};
             const title = info.title || '';
             if (title && title.trim()) {
               results.push({
@@ -4535,18 +4542,20 @@
               });
               if (cResp.ok) {
                 const cData = await cResp.json();
-                ((cData.data && cData.data.comments) || []).forEach(c => {
-                  const content = c.comment_info && c.comment_info.content || '';
+                // API 返回 data 为评论数组（无 .comments 包装）
+                (Array.isArray(cData.data) ? cData.data : []).forEach(c => {
+                  const info = c.comment_info || {};
+                  const content = info.comment_content || info.content || '';
                   const clean = content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
                   if (clean && clean.length > 5) {
                     results.push({
                       text: clean.slice(0, 80),
                       tag: 'comment',
                       source: '评论',
-                      username: (c.comment_user_info && c.comment_user_info.user_name) || '',
+                      username: (c.user_info && c.user_info.user_name) || '',
                       pinId: String(pinId),
-                      replyCount: (c.comment_info && c.comment_info.reply_count) || 0,
-                      likeCount: (c.comment_info && c.comment_info.digg_count) || 0,
+                      replyCount: info.reply_count || 0,
+                      likeCount: info.digg_count || 0,
                       url: `https://juejin.cn/pin/${pinId}`,
                     });
                   }
@@ -4941,11 +4950,11 @@
         paramList.appendChild(sliderRow('角色大小', 60, 160, 5, Math.round((cfg.characterScale || 1) * 100),
           v => v + '%',
           v => this.engine.setCharacterScale(parseInt(v) / 100)));
-        paramList.appendChild(sliderRow('深度层数', 1, 8, 1, cfg.depthRows || 4,
+        paramList.appendChild(sliderRow('深度层数', 1, 8, 1, cfg.depthRows || 3,
           v => v + ' 层',
           v => this.engine.setDepthConfig({ rows: parseInt(v) })));
         paramList.appendChild(sliderRow('地面高度', -15, 60, 1,
-          (typeof this.engine.getGroundHeight === 'function') ? this.engine.getGroundHeight() : 7,
+          (typeof this.engine.getGroundHeight === 'function') ? this.engine.getGroundHeight() : -4,
           v => v + '%',
           v => { if (this.engine.setGroundHeight) this.engine.setGroundHeight(parseInt(v)); }));
         sec2.appendChild(paramList);
@@ -4963,7 +4972,7 @@
         depthList.appendChild(sliderRow('后排大小', 40, 100, 5, Math.round((cfg.depthScaleBack || 0.75) * 100),
           v => v + '%',
           v => this.engine.setDepthConfig({ scaleBack: parseInt(v) / 100 })));
-        depthList.appendChild(sliderRow('纵向间距', 0, 60, 2, Math.round((cfg.depthSpread || 0.18) * 100),
+        depthList.appendChild(sliderRow('纵向间距', 0, 60, 2, Math.round((cfg.depthSpread || 0.08) * 100),
           v => v + '%',
           v => this.engine.setDepthConfig({ spread: parseInt(v) / 100 })));
         sec3.appendChild(depthList);
@@ -5993,6 +6002,7 @@
     let mouseX = -1, mouseY = -1;
     let rafId = 0;
     let running = true;
+    let hoveredChar = null;         // 当前被悬停的角色（用于暂停弹幕运动）
 
     const fmt = (n) => (n == null || isNaN(n)) ? 0 : n;
 
@@ -6021,9 +6031,15 @@
 
     function update() {
       const hit = engine.hitTestBubble(mouseX, mouseY);
-      // 没有命中：隐藏
+      // 没有命中：隐藏 tooltip，清除悬停状态
       if (!hit || !hit.c || !hit.c.message) {
         if (cur) { tip.style.display = 'none'; cur = null; }
+        // 清除上一个悬停角色的暂停状态
+        if (hoveredChar) {
+          hoveredChar._hovered = false;
+          hoveredChar = null;
+          document.body.style.cursor = '';
+        }
         return;
       }
       const msg = hit.c.message;
@@ -6055,6 +6071,16 @@
         hint.textContent = getHintText(meta);
         tip.style.cursor = jumpUrl ? 'pointer' : 'default';
       }
+
+      // 暂停被悬停的弹幕/气泡载体（鼠标放上时停止运动）
+      if (hoveredChar !== hit.c) {
+        if (hoveredChar) hoveredChar._hovered = false;
+        hit.c._hovered = true;
+        hoveredChar = hit.c;
+      }
+      // 有跳转链接时显示手型光标
+      const jumpUrl = getJumpUrl(meta);
+      document.body.style.cursor = jumpUrl ? 'pointer' : '';
 
       // 定位到鼠标右下方，越界则翻转到左/上方
       tip.style.display = 'block';
@@ -6094,13 +6120,32 @@
     });
 
     window.addEventListener('mousemove', onMove);
+
+    // 点击气泡/弹幕药丸条直接跳转详情页（无需先移到 tooltip 上再点击）
+    const onClick = (e) => {
+      // 如果点击的是 tooltip 本身，由 tooltip 的 click 处理，不重复处理
+      if (tip.contains(e.target)) return;
+      const hit = engine.hitTestBubble(e.clientX, e.clientY);
+      if (!hit || !hit.c || !hit.c.message) return;
+      const meta = hit.c.message.meta || {};
+      const url = getJumpUrl(meta);
+      if (url) {
+        try { window.open(url, '_blank'); } catch (_) {}
+      }
+    };
+    window.addEventListener('click', onClick);
+
     rafId = requestAnimationFrame(loop);
 
     const api = {
       destroy() {
         running = false;
         window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('click', onClick);
         cancelAnimationFrame(rafId);
+        // 清除悬停暂停状态和光标
+        if (hoveredChar) { hoveredChar._hovered = false; hoveredChar = null; }
+        document.body.style.cursor = '';
         if (tip.parentNode) tip.parentNode.removeChild(tip);
         if (window.__JMW_BUBBLE_TIP__ === api) window.__JMW_BUBBLE_TIP__ = null;
       },
@@ -6134,13 +6179,13 @@
       const { JuejinMessageProvider, ControlPanel, attachBubbleInteraction } = window.JuejinMessageWall;
       const provider = new JuejinMessageProvider();
       const engine = new MessageWallEngine(document.body, {
-        characterCount: 15,
+        characterCount: 10,
         characterScale: 1.3,
         performanceMode: 'auto',
         targetFPS: 30,
         defaultCharacterStyle: 'kaai',
         characterTypeRatio: { person: 1 },
-        floorRatio: 1.07,
+        floorRatio: 1.04,
         zIndex: 99999,
         opacity: 1,
         messageInterval: 1200,

@@ -13,7 +13,8 @@ const JUEJIN_APIS = {
   pinRecommend: 'https://api.juejin.cn/recommend_api/v1/short_msg/recommend',
   pinHot: 'https://api.juejin.cn/recommend_api/v1/short_msg/hot',
   articleFeed: 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed',
-  articleHot: 'https://api.juejin.cn/rank_api/v1/scroll_article/list',
+  // rank_api 已失效，改用 recommend_all_feed sort_type=200 按热度排序
+  articleHot: 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed',
   commentList: 'https://api.juejin.cn/interact_api/v1/comment/list',
 };
 
@@ -177,14 +178,18 @@ class JuejinFetcher extends EventEmitter {
     return results;
   }
 
-  // ============ 文章：热榜 ============
+  // ============ 文章：热榜（rank_api 已失效，改用 recommend_all_feed sort_type=200）============
   async _fetchArticleHot() {
     const results = [];
     try {
-      const data = await this._post(JUEJIN_APIS.articleHot, { cursor: '0', limit: 20, sort_type: 200 });
+      const data = await this._post(JUEJIN_APIS.articleHot, {
+        cursor: '0', limit: 20, sort_type: 200, id_type: 2, client_type: 2608,
+      });
       (data.data || []).forEach((item) => {
-        const info = item.article_info || item;
-        const author = item.author_user_info || {};
+        // recommend_all_feed 的响应结构：item.item_info.article_info
+        const itemInfo = item.item_info || item;
+        const info = itemInfo.article_info || itemInfo;
+        const author = itemInfo.author_user_info || item.author_user_info || {};
         const title = (info.title || '').trim();
         if (!title) return;
         const articleId = String(info.article_id || item.articleId || '');
@@ -221,17 +226,19 @@ class JuejinFetcher extends EventEmitter {
             limit: 5,
             sort: 0,
           });
-          ((cData.data && cData.data.comments) || []).forEach((c) => {
-            const txt = clean(c.comment_info && c.comment_info.content);
+          // API 返回 data 为评论数组（无 .comments 包装）
+          (Array.isArray(cData.data) ? cData.data : []).forEach((c) => {
+            const info = c.comment_info || {};
+            const txt = clean(info.comment_content || info.content);
             if (!txt || txt.length <= 5) return;
             results.push({
               text: txt.slice(0, 80),
               tag: 'comment',
               source: '评论',
-              username: (c.comment_user_info && c.comment_user_info.user_name) || '',
+              username: (c.user_info && c.user_info.user_name) || '',
               pinId: String(pinId),
-              replyCount: (c.comment_info && c.comment_info.reply_count) || 0,
-              likeCount: (c.comment_info && c.comment_info.digg_count) || 0,
+              replyCount: info.reply_count || 0,
+              likeCount: info.digg_count || 0,
               url: `https://juejin.cn/pin/${pinId}`,
             });
           });

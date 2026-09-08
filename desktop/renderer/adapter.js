@@ -96,7 +96,7 @@
       targetFPS: 30,
       defaultCharacterStyle: settings.defaultCharacterStyle,
       characterTypeRatio: { person: 1 },
-      floorRatio: 1.05,
+      floorRatio: 1.04,
       zIndex: 99999,
       opacity: settings.opacity,
       messageInterval: settings.messageInterval,

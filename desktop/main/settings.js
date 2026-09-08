@@ -12,7 +12,7 @@ const DEFAULTS = {
   autostart: false,          // 开机自启
   loginPrompted: false,      // 是否已弹过首次登录窗
   // —— 引擎参数（与 message-wall-core.js 的默认值保持一致）——
-  characterCount: 15,
+  characterCount: 10,
   characterScale: 1.3,
   defaultCharacterStyle: 'kaai',
   messageInterval: 1200,

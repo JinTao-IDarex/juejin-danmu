@@ -320,9 +320,12 @@
       if (danmaku) {
         // 弹幕模式：恒速横穿（px/s × 真实帧间隔 dt），不随机行为、不走路动画
         this.state = 'walking';
-        const dtSec = (PERF.frameDt || 1000 / (PERF.targetFPS || 30)) / 1000;
-        const px = (this._danmakuPx || 120) * dtSec;
-        this.x += (this.direction === 'right' ? 1 : -1) * px;
+        // 鼠标悬停时暂停运动，方便用户阅读/点击
+        if (!this._hovered) {
+          const dtSec = (PERF.frameDt || 1000 / (PERF.targetFPS || 30)) / 1000;
+          const px = (this._danmakuPx || 120) * dtSec;
+          this.x += (this.direction === 'right' ? 1 : -1) * px;
+        }
         if (this.x < -this.width - 60 || this.x > canvasW + 60) this._recycle = true;
         if (this.messageTimer > 0) {
           this.messageTimer--;
@@ -879,11 +882,11 @@
     constructor(container, config = {}) {
       this.container = container;
       this.config = Object.assign({
-        characterCount: 15,
+        characterCount: 10,
         characterTypes: ['person', 'cat', 'dog', 'rabbit'],
         characterTypeRatio: { person: 0.55, cat: 0.2, dog: 0.15, rabbit: 0.1 },
         characterScale: 1.3,
-        floorRatio: 1.05,
+        floorRatio: 1.04,
         zIndex: 99999,
         opacity: 1,
         showNames: true,
